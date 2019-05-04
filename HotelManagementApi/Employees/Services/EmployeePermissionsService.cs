@@ -1,0 +1,18 @@
+﻿using HotelManagementApi.Employees.Repositories;
+using HotelManagementApi.Employees.RequestModels;
+using HotelManagementApi.Employees.ResponseModels;
+using HotelManagementApi.Shared;
+using System.Collections.Generic;
+
+namespace HotelManagementApi.Employees.Services
+{
+    public class EmployeePermissionsService : IEmployeePermissionsService
+    {
+        private readonly IEmployeePermissionsRepository _repository;
+
+        public EmployeePermissionsService() => _repository = new EmployeePermissionsRepository();
+
+        public List<EmployeePermission> GetEmployeePermissions(int employeeId) => _repository.GetEmployeePermissions(employeeId);
+        public ResponseStatus SetEmployeePermission(SetEmployeePermission req) => _repository.SetEmployeePermission(req);
+    }
+}
