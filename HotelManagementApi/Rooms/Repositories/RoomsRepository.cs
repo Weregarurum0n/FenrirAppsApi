@@ -26,7 +26,7 @@ namespace HotelManagementApi.Rooms.Repositories
             return null;
         }
 
-        public ResponseStatus SetRoom(SetRoom req)
+        public ReturnStatus SetRoom(SetRoom req)
         {
             return null;
         }

@@ -10,6 +10,6 @@ namespace HotelManagementApi.Employees.Services
 
         public ChangePasswordsService() => _repository = new ChangePasswordsRepository();
 
-        public ResponseStatus SetPassword(SetPassword req) => _repository.SetPassword(req);
+        public ReturnStatus SetPassword(SetPassword req) => _repository.SetPassword(req);
     }
 }

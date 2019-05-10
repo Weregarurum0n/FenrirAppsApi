@@ -14,14 +14,14 @@ namespace HotelManagementApi.Locations.Services
 
         public List<Country> GetCountries() => _repository.GetCountries();
         public Country GetCountry(int countryId) => _repository.GetCountry(countryId);
-        public ResponseStatus SetCountry(SetCountry req) => _repository.SetCountry(req);
+        public ReturnStatus SetCountry(SetCountry req) => _repository.SetCountry(req);
 
         public List<State> GetStates(int countryId) => _repository.GetStates(countryId);
         public State GetState(int countryId, int stateId) => _repository.GetState(countryId, stateId);
-        public ResponseStatus SetState(SetState req) => _repository.SetState(req);
+        public ReturnStatus SetState(SetState req) => _repository.SetState(req);
 
         public List<City> GetCities(int countryId, int stateId) => _repository.GetCities(countryId, stateId);
         public City GetCity(int countryId, int stateId, int cityId) => _repository.GetCity(countryId, stateId, cityId);
-        public ResponseStatus SetCity(SetCity req) => _repository.SetCity(req);
+        public ReturnStatus SetCity(SetCity req) => _repository.SetCity(req);
     }
 }

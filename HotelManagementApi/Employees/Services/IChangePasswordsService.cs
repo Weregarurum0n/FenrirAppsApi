@@ -5,6 +5,6 @@ namespace HotelManagementApi.Employees.Services
 {
     public interface IChangePasswordsService
     {
-        ResponseStatus SetPassword(SetPassword req);
+        ReturnStatus SetPassword(SetPassword req);
     }
 }

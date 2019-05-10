@@ -18,6 +18,6 @@ namespace FenrirAppsApi.Controllers.HotelManagement.Employees
         public List<EmployeePermission> GetEmployeePermissions(int employeeId) => _service.GetEmployeePermissions(employeeId);
 
         [HttpPost]
-        public ResponseStatus SetEmployeePermission([FromBody] SetEmployeePermission req) => _service.SetEmployeePermission(req);
+        public ReturnStatus SetEmployeePermission([FromBody] SetEmployeePermission req) => _service.SetEmployeePermission(req);
     }
 }

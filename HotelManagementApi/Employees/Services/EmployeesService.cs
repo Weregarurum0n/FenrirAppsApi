@@ -14,6 +14,6 @@ namespace HotelManagementApi.Employees.Services
 
         public List<Employee> GetEmployees(GetEmployees req) => _repository.GetEmployees(req);
         public Employee GetEmployee(int employeeId) => _repository.GetEmployee(employeeId);
-        public ResponseStatus SetEmployee(SetEmployee req) => _repository.SetEmployee(req);
+        public ReturnStatus SetEmployee(SetEmployee req) => _repository.SetEmployee(req);
     }
 }

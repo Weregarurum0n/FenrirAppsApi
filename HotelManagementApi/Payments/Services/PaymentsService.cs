@@ -14,6 +14,6 @@ namespace HotelManagementApi.Payments.Services
 
         public List<Payment> GetPayments(GetPayments req) => _repository.GetPayments(req);
         public Payment GetPayment(int paymentId) => _repository.GetPayment(paymentId);
-        public ResponseStatus SetPayment(SetPayment req) => _repository.SetPayment(req);
+        public ReturnStatus SetPayment(SetPayment req) => _repository.SetPayment(req);
     }
 }

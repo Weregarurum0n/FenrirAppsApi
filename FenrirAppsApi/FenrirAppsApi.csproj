@@ -5,6 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="Controllers\HotelManagement\UserSettings\" />
+    <Folder Include="Controllers\HotelManagement\Themes\" />
     <Folder Include="wwwroot\" />
   </ItemGroup>
 

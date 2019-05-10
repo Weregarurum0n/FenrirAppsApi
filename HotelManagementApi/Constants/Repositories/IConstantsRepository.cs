@@ -9,6 +9,6 @@ namespace HotelManagementApi.Constants.Repositories
     {
         List<Constant> GetConstants(GetConstants req);
         Constant GetConstant(int constantId);
-        ResponseStatus SetConstant(SetConstant req);
+        ReturnStatus SetConstant(SetConstant req);
     }
 }

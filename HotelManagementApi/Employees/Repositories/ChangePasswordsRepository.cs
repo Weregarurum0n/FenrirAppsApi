@@ -5,7 +5,7 @@ namespace HotelManagementApi.Employees.Repositories
 {
     public class ChangePasswordsRepository : IChangePasswordsRepository
     {
-        public ResponseStatus SetPassword(SetPassword req)
+        public ReturnStatus SetPassword(SetPassword req)
         {
             return null;
         }

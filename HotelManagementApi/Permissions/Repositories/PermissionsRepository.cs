@@ -26,7 +26,7 @@ namespace HotelManagementApi.Permissions.Repositories
             return null;
         }
 
-        public ResponseStatus SetPermission(SetPermission req)
+        public ReturnStatus SetPermission(SetPermission req)
         {
             return null;
         }

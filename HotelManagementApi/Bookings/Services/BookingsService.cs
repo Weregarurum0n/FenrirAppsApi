@@ -14,6 +14,6 @@ namespace HotelManagementApi.Bookings.Services
 
         public List<Booking> GetBookings(GetBookings req) => _repository.GetBookings(req);
         public Booking GetBooking(int bookingId) => _repository.GetBooking(bookingId);
-        public ResponseStatus SetBooking(SetBooking req) => _repository.SetBooking(req);
+        public ReturnStatus SetBooking(SetBooking req) => _repository.SetBooking(req);
     }
 }

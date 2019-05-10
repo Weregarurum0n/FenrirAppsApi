@@ -30,7 +30,7 @@ namespace HotelManagementApi.Locations.Repositories
         {
             return null;
         }
-        public ResponseStatus SetCountry(SetCountry req)
+        public ReturnStatus SetCountry(SetCountry req)
         {
             return null;
         }
@@ -43,7 +43,7 @@ namespace HotelManagementApi.Locations.Repositories
         {
             return null;
         }
-        public ResponseStatus SetState(SetState req)
+        public ReturnStatus SetState(SetState req)
         {
             return null;
         }
@@ -56,7 +56,7 @@ namespace HotelManagementApi.Locations.Repositories
         {
             return null;
         }
-        public ResponseStatus SetCity(SetCity req)
+        public ReturnStatus SetCity(SetCity req)
         {
             return null;
         }

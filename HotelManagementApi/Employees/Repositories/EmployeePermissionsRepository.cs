@@ -12,7 +12,7 @@ namespace HotelManagementApi.Employees.Repositories
             return null;
         }
 
-        public ResponseStatus SetEmployeePermission(SetEmployeePermission req)
+        public ReturnStatus SetEmployeePermission(SetEmployeePermission req)
         {
             return null;
         }

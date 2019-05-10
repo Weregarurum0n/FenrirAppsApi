@@ -9,6 +9,6 @@ namespace HotelManagementApi.Employees.Services
     {
         List<Employee> GetEmployees(GetEmployees req);
         Employee GetEmployee(int employeeId);
-        ResponseStatus SetEmployee(SetEmployee req);
+        ReturnStatus SetEmployee(SetEmployee req);
     }
 }

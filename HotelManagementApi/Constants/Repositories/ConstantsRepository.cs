@@ -26,7 +26,7 @@ namespace HotelManagementApi.Constants.Repositories
             return null;
         }
 
-        public ResponseStatus SetConstant(SetConstant req)
+        public ReturnStatus SetConstant(SetConstant req)
         {
             return null;
         }

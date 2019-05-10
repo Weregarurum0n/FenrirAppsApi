@@ -15,12 +15,12 @@ namespace FenrirAppsApi.Controllers.HotelManagement
         public RoomsController() => _service = new RoomsService();
 
         [HttpGet]
-        public List<Room> GetMany(GetRooms req) => _service.GetRooms(req);
+        public List<Room> GetRooms(GetRooms req) => _service.GetRooms(req);
 
         [HttpGet("{roomId}")]
-        public Room GetSpecific(int roomId) => _service.GetRoom(roomId);
+        public Room GetRoom(int roomId) => _service.GetRoom(roomId);
 
         [HttpPost]
-        public ResponseStatus SetRoom([FromBody] SetRoom req) => _service.SetRoom(req);
+        public ReturnStatus SetRoom([FromBody] SetRoom req) => _service.SetRoom(req);
     }
 }

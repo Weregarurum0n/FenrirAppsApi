@@ -21,6 +21,6 @@ namespace FenrirAppsApi.Controllers.HotelManagement.Constants
         public Constant GetConstant(int constantId) => _service.GetConstant(constantId);
 
         [HttpPost]
-        public ResponseStatus SetConstant([FromBody] SetConstant req) => _service.SetConstant(req);
+        public ReturnStatus SetConstant([FromBody] SetConstant req) => _service.SetConstant(req);
     }
 }

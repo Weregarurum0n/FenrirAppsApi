@@ -1,4 +1,4 @@
-﻿namespace HotelManagementApi.Employees.RequestModels
+﻿namespace HotelManagementApi.Login.RequestModels
 {
     public class AuthLogin
     {

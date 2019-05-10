@@ -26,7 +26,7 @@ namespace HotelManagementApi.Guests.Repositories
             return null;
         }
 
-        public ResponseStatus SetGuest(SetGuest req)
+        public ReturnStatus SetGuest(SetGuest req)
         {
             return null;
         }

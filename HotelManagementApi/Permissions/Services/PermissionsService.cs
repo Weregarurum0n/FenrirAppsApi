@@ -14,6 +14,6 @@ namespace HotelManagementApi.Permissions.Services
 
         public List<Permission> GetPermissions(GetPermissions req) => _repository.GetPermissions(req);
         public Permission GetPermission(int permissionId) => _repository.GetPermission(permissionId);
-        public ResponseStatus SetPermission(SetPermission req) => _repository.SetPermission(req);
+        public ReturnStatus SetPermission(SetPermission req) => _repository.SetPermission(req);
     }
 }

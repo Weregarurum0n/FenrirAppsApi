@@ -26,7 +26,7 @@ namespace HotelManagementApi.Payments.Repositories
             return null;
         }
 
-        public ResponseStatus SetPayment(SetPayment req)
+        public ReturnStatus SetPayment(SetPayment req)
         {
             return null;
         }

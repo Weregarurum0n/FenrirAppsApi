@@ -15,6 +15,6 @@ namespace FenrirAppsApi.Controllers.HotelManagement.Employees
         public ChangePasswordsController() => _service = new ChangePasswordsService();
 
         [HttpPost]
-        public ResponseStatus SetPassword([FromBody] SetPassword req) => _service.SetPassword(req);
+        public ReturnStatus SetPassword([FromBody] SetPassword req) => _service.SetPassword(req);
     }
 }

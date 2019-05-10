@@ -21,6 +21,6 @@ namespace FenrirAppsApi.Controllers.HotelManagement.Employees
         public Employee GetEmployee(int employeeId) => _service.GetEmployee(employeeId);
 
         [HttpPost]
-        public ResponseStatus SetEmployee([FromBody] SetEmployee req) => _service.SetEmployee(req);
+        public ReturnStatus SetEmployee([FromBody] SetEmployee req) => _service.SetEmployee(req);
     }
 }

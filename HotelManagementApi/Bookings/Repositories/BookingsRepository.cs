@@ -24,7 +24,7 @@ namespace HotelManagementApi.Bookings.Repositories
             return null;
         }
 
-        public ResponseStatus SetBooking(SetBooking req)
+        public ReturnStatus SetBooking(SetBooking req)
         {
             return null;
         }

@@ -9,6 +9,6 @@ namespace HotelManagementApi.Rooms.Services
     {
         List<Room> GetRooms(GetRooms req);
         Room GetRoom(int roomId);
-        ResponseStatus SetRoom(SetRoom req);
+        ReturnStatus SetRoom(SetRoom req);
     }
 }

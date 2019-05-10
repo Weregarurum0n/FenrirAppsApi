@@ -23,6 +23,6 @@ namespace FenrirAppsApi.Controllers.HotelManagement.Bookings
         public Booking GetBooking(int bookingId) => _service.GetBooking(bookingId);
 
         [HttpPost]
-        public ResponseStatus SetBooking([FromBody] SetBooking req) => _service.SetBooking(req);
+        public ReturnStatus SetBooking([FromBody] SetBooking req) => _service.SetBooking(req);
     }
 }

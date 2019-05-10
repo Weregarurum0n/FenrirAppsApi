@@ -14,6 +14,6 @@ namespace HotelManagementApi.Guests.Services
 
         public List<Guest> GetGuests(GetGuests req) => _repository.GetGuests(req);
         public Guest GetGuest(int guestId) => _repository.GetGuest(guestId);
-        public ResponseStatus SetGuest(SetGuest req) => _repository.SetGuest(req);
+        public ReturnStatus SetGuest(SetGuest req) => _repository.SetGuest(req);
     }
 }

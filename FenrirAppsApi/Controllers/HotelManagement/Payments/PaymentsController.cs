@@ -21,6 +21,6 @@ namespace FenrirAppsApi.Controllers.HotelManagement
         public Payment GetPayment(int paymentId) => _service.GetPayment(paymentId);
 
         [HttpPost]
-        public ResponseStatus SetPayment([FromBody] SetPayment req) => _service.SetPayment(req);
+        public ReturnStatus SetPayment([FromBody] SetPayment req) => _service.SetPayment(req);
     }
 }

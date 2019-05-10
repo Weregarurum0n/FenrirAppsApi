@@ -9,6 +9,6 @@ namespace HotelManagementApi.Guests.Repositories
     {
         List<Guest> GetGuests(GetGuests req);
         Guest GetGuest(int guestId);
-        ResponseStatus SetGuest(SetGuest req);
+        ReturnStatus SetGuest(SetGuest req);
     }
 }

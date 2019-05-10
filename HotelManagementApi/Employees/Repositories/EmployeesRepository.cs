@@ -45,7 +45,7 @@ namespace HotelManagementApi.Employees.Repositories
             return null;
         }
 
-        public ResponseStatus SetEmployee(SetEmployee req)
+        public ReturnStatus SetEmployee(SetEmployee req)
         {
             return null;
         }
