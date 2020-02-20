@@ -8,7 +8,6 @@ namespace HotelManagementApi.Employees.Repositories
     public interface IEmployeesRepository
     {
         List<Employee> GetEmployees(GetEmployees req);
-        Employee GetEmployee(int employeeId);
         ReturnStatus SetEmployee(SetEmployee req);
     }
 }

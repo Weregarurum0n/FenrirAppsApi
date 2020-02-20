@@ -12,7 +12,7 @@ namespace FenrirAppsApi.Controllers.HotelManagement.Employees
     {
         private static IChangePasswordsService _service;
 
-        public ChangePasswordsController() => _service = new ChangePasswordsService();
+        public ChangePasswordsController(IChangePasswordsService service) => _service = service;
 
         [HttpPost]
         public ReturnStatus SetPassword([FromBody] SetPassword req) => _service.SetPassword(req);

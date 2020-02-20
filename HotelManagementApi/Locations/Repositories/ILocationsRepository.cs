@@ -8,15 +8,12 @@ namespace HotelManagementApi.Locations.Repositories
     public interface ILocationsRepository
     {
         List<Country> GetCountries();
-        Country GetCountry(int countryId);
         ReturnStatus SetCountry(SetCountry req);
 
         List<State> GetStates(int countryId);
-        State GetState(int countryId, int stateId);
         ReturnStatus SetState(SetState req);
 
         List<City> GetCities(int countryId, int stateId);
-        City GetCity(int countryId, int stateId, int cityId);
         ReturnStatus SetCity(SetCity req);
     }
 }

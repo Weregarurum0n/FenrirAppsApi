@@ -5,6 +5,7 @@ namespace HotelManagementApi.Employees.ResponseModels
     public class Employee
     {
         public int EmployeeId { get; set; }
+        public string UserName { get; set; }
         public string FirstName { get; set; }
         public string MidName { get; set; }
         public string LastName1 { get; set; }

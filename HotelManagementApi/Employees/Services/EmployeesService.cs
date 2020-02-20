@@ -10,10 +10,9 @@ namespace HotelManagementApi.Employees.Services
     {
         private readonly IEmployeesRepository _repository;
 
-        public EmployeesService() => _repository = new EmployeesRepository();
+        public EmployeesService(IEmployeesRepository repository) => _repository = repository;
 
         public List<Employee> GetEmployees(GetEmployees req) => _repository.GetEmployees(req);
-        public Employee GetEmployee(int employeeId) => _repository.GetEmployee(employeeId);
         public ReturnStatus SetEmployee(SetEmployee req) => _repository.SetEmployee(req);
     }
 }

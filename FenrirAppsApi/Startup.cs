@@ -24,6 +24,9 @@ namespace FenrirAppsApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+
+            var startup = new HotelManagementApi.Startup(Configuration);
+            startup.ConfigureServices(services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

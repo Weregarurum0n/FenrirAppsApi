@@ -12,7 +12,7 @@ namespace FenrirAppsApi.Controllers.HotelManagement.Login
     {
         private static ILoginService _service;
 
-        public LoginController() => _service = new LoginService();
+        public LoginController(ILoginService service) => _service = service;
 
         [HttpGet("")]
         public ApiResponse<UserDetail> LoginGet([FromQuery] AuthLogin req)

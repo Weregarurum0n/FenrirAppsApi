@@ -3,6 +3,7 @@ using HotelManagementApi.Locations.RequestModels;
 using HotelManagementApi.Locations.ResponseModels;
 using HotelManagementApi.Shared;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 
 namespace HotelManagementApi.Locations.Repositories
@@ -10,6 +11,7 @@ namespace HotelManagementApi.Locations.Repositories
     public class LocationsRepository : ILocationsRepository
     {
         private readonly IConnectionString _connectionString;
+        private readonly IRequestInfo _requestInfo;
 
         private static string p_Countries_Get = "p_Countries_Get";
         private static string p_Countries_Set = "p_Countries_Set";
@@ -20,45 +22,226 @@ namespace HotelManagementApi.Locations.Repositories
         private static string p_Cities_Get = "p_Cities_Get";
         private static string p_Cities_Set = "p_Cities_Set";
 
-        public LocationsRepository() => _connectionString = new ConnectionString();
+        public LocationsRepository(IConnectionString connectionString, IRequestInfo requestInfo)
+        {
+            _connectionString = connectionString;
+            _requestInfo = requestInfo;
+        }
 
         public List<Country> GetCountries()
         {
-            return null;
-        }
-        public Country GetCountry(int countryId)
-        {
-            return null;
+            var result = null as List<Country>;
+            using (var connection = new SqlConnection(_connectionString.Conn))
+            {
+                var cmd = new SqlCommand(p_Countries_Get, connection) { CommandType = CommandType.StoredProcedure };
+
+                cmd.Parameters.AddWithValue("@UserID", _requestInfo.UserId);
+
+                cmd.Parameters.Add("@lRetVal", SqlDbType.Int).Direction = ParameterDirection.Output;
+                cmd.Parameters.Add("@sRetMsg", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
+
+                cmd.Parameters.AddWithValue("@CountryID", 0);
+                cmd.Parameters.AddWithValue("@Name", string.Empty);
+                cmd.Parameters.AddWithValue("@Abbrev", string.Empty);
+                cmd.Parameters.AddWithValue("@IncludeDisabled", true);
+
+                connection.Open();
+
+                using (var dr = cmd.ExecuteReader())
+                {
+                    result = new List<Country>();
+                    while (dr.Read())
+                    {
+                        result.Add(new Country
+                        {
+                            CountryId = dr["CountryID"].ToSafeInt32(),
+                            Name = dr["Name"].ToSafeString(),
+                            Abbrev = dr["Abbrev"].ToSafeString(),
+                            Disabled = dr["Disabled"].ToSafeBool(),
+
+                            CreatedId = dr["CreatedID"].ToSafeInt32(),
+                            CreatedBy = dr["CreatedBy"].ToSafeString(),
+                            CreatedDateTime = dr["CreatedDateTime"].ToSafeDateTime(),
+                            ModifiedId = dr["ModifiedID"].ToSafeInt32(),
+                            ModifiedBy = dr["ModifiedBy"].ToSafeString(),
+                            ModifiedDateTime = dr["ModifiedDateTime"].ToSafeDateTime()
+                        });
+                    }
+                }
+            }
+            return result;
         }
         public ReturnStatus SetCountry(SetCountry req)
         {
-            return null;
+            using (var connection = new SqlConnection(_connectionString.Conn))
+            {
+                var cmd = new SqlCommand(p_Countries_Set, connection)
+                {
+                    CommandType = CommandType.StoredProcedure
+                };
+
+                cmd.Parameters.AddWithValue("@UserID", _requestInfo.UserId);
+
+                cmd.Parameters.Add("@lRetVal", SqlDbType.Int).Direction = ParameterDirection.Output;
+                cmd.Parameters.Add("@sRetMsg", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
+
+                cmd.Parameters.AddWithValue("@CountryID", req.CountryId);
+                cmd.Parameters.AddWithValue("@Name", req.Name);
+                cmd.Parameters.AddWithValue("@Abbrev", req.Abbrev);
+                cmd.Parameters.AddWithValue("@Disable", req.Disable);
+
+                connection.Open();
+
+                cmd.ExecuteNonQuery();
+
+                return new ReturnStatus(cmd.Parameters["@lRetVal"].Value.ToSafeInt32(), cmd.Parameters["@sRetMsg"].Value.ToSafeString());
+            }
         }
 
         public List<State> GetStates(int countryId)
         {
-            return null;
-        }
-        public State GetState(int countryId, int stateId)
-        {
-            return null;
+            var result = null as List<State>;
+            using (var connection = new SqlConnection(_connectionString.Conn))
+            {
+                var cmd = new SqlCommand(p_States_Get, connection) { CommandType = CommandType.StoredProcedure };
+
+                cmd.Parameters.AddWithValue("@UserID", _requestInfo.UserId);
+
+                cmd.Parameters.Add("@lRetVal", SqlDbType.Int).Direction = ParameterDirection.Output;
+                cmd.Parameters.Add("@sRetMsg", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
+
+                cmd.Parameters.AddWithValue("@StateID", 0);
+                cmd.Parameters.AddWithValue("@CountryID", countryId);
+                cmd.Parameters.AddWithValue("@Name", string.Empty);
+                cmd.Parameters.AddWithValue("@Abbrev", string.Empty);
+                cmd.Parameters.AddWithValue("@IncludeDisabled", true);
+
+                connection.Open();
+
+                using (var dr = cmd.ExecuteReader())
+                {
+                    result = new List<State>();
+                    while (dr.Read())
+                    {
+                        result.Add(new State
+                        {
+                            CountryId = dr["CountryID"].ToSafeInt32(),
+                            Name = dr["Name"].ToSafeString(),
+                            Abbrev = dr["Abbrev"].ToSafeString(),
+                            Disabled = dr["Disabled"].ToSafeBool(),
+
+                            CreatedId = dr["CreatedID"].ToSafeInt32(),
+                            CreatedBy = dr["CreatedBy"].ToSafeString(),
+                            CreatedDateTime = dr["CreatedDateTime"].ToSafeDateTime(),
+                            ModifiedId = dr["ModifiedID"].ToSafeInt32(),
+                            ModifiedBy = dr["ModifiedBy"].ToSafeString(),
+                            ModifiedDateTime = dr["ModifiedDateTime"].ToSafeDateTime()
+                        });
+                    }
+                }
+            }
+            return result;
         }
         public ReturnStatus SetState(SetState req)
         {
-            return null;
+            using (var connection = new SqlConnection(_connectionString.Conn))
+            {
+                var cmd = new SqlCommand(p_States_Set, connection)
+                {
+                    CommandType = CommandType.StoredProcedure
+                };
+
+                cmd.Parameters.AddWithValue("@UserID", _requestInfo.UserId);
+
+                cmd.Parameters.Add("@lRetVal", SqlDbType.Int).Direction = ParameterDirection.Output;
+                cmd.Parameters.Add("@sRetMsg", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
+
+                cmd.Parameters.AddWithValue("@StateID", req.StateId);
+                cmd.Parameters.AddWithValue("@CountryID", req.CountryId);
+                cmd.Parameters.AddWithValue("@Name", req.Name);
+                cmd.Parameters.AddWithValue("@Abbrev", req.Abbrev);
+                cmd.Parameters.AddWithValue("@Disable", req.Disable);
+
+                connection.Open();
+
+                cmd.ExecuteNonQuery();
+
+                return new ReturnStatus(cmd.Parameters["@lRetVal"].Value.ToSafeInt32(), cmd.Parameters["@sRetMsg"].Value.ToSafeString());
+            }
         }
 
         public List<City> GetCities(int countryId, int stateId)
         {
-            return null;
-        }
-        public City GetCity(int countryId, int stateId, int cityId)
-        {
-            return null;
+            var result = null as List<City>;
+            using (var connection = new SqlConnection(_connectionString.Conn))
+            {
+                var cmd = new SqlCommand(p_Cities_Get, connection) { CommandType = CommandType.StoredProcedure };
+
+                cmd.Parameters.AddWithValue("@UserID", _requestInfo.UserId);
+
+                cmd.Parameters.Add("@lRetVal", SqlDbType.Int).Direction = ParameterDirection.Output;
+                cmd.Parameters.Add("@sRetMsg", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
+
+                cmd.Parameters.AddWithValue("@CityID", 0);
+                cmd.Parameters.AddWithValue("@StateID", stateId);
+                cmd.Parameters.AddWithValue("@CountryID", countryId);
+                cmd.Parameters.AddWithValue("@Name", string.Empty);
+                cmd.Parameters.AddWithValue("@Abbrev", string.Empty);
+                cmd.Parameters.AddWithValue("@IncludeDisabled", true);
+
+                connection.Open();
+
+                using (var dr = cmd.ExecuteReader())
+                {
+                    result = new List<City>();
+                    while (dr.Read())
+                    {
+                        result.Add(new City
+                        {
+                            CountryId = dr["CountryID"].ToSafeInt32(),
+                            Name = dr["Name"].ToSafeString(),
+                            Abbrev = dr["Abbrev"].ToSafeString(),
+                            Disabled = dr["Disabled"].ToSafeBool(),
+
+                            CreatedId = dr["CreatedID"].ToSafeInt32(),
+                            CreatedBy = dr["CreatedBy"].ToSafeString(),
+                            CreatedDateTime = dr["CreatedDateTime"].ToSafeDateTime(),
+                            ModifiedId = dr["ModifiedID"].ToSafeInt32(),
+                            ModifiedBy = dr["ModifiedBy"].ToSafeString(),
+                            ModifiedDateTime = dr["ModifiedDateTime"].ToSafeDateTime()
+                        });
+                    }
+                }
+            }
+            return result;
         }
         public ReturnStatus SetCity(SetCity req)
         {
-            return null;
+            using (var connection = new SqlConnection(_connectionString.Conn))
+            {
+                var cmd = new SqlCommand(p_Cities_Set, connection)
+                {
+                    CommandType = CommandType.StoredProcedure
+                };
+
+                cmd.Parameters.AddWithValue("@UserID", _requestInfo.UserId);
+
+                cmd.Parameters.Add("@lRetVal", SqlDbType.Int).Direction = ParameterDirection.Output;
+                cmd.Parameters.Add("@sRetMsg", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
+
+                cmd.Parameters.AddWithValue("@CityID", req.CityId);
+                cmd.Parameters.AddWithValue("@StateID", req.StateId);
+                cmd.Parameters.AddWithValue("@CountryID", req.CountryId);
+                cmd.Parameters.AddWithValue("@Name", req.Name);
+                cmd.Parameters.AddWithValue("@Abbrev", req.Abbrev);
+                cmd.Parameters.AddWithValue("@Disable", req.Disable);
+
+                connection.Open();
+
+                cmd.ExecuteNonQuery();
+
+                return new ReturnStatus(cmd.Parameters["@lRetVal"].Value.ToSafeInt32(), cmd.Parameters["@sRetMsg"].Value.ToSafeString());
+            }
         }
     }
 }

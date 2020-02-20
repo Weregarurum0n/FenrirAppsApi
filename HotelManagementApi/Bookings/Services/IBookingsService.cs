@@ -8,7 +8,6 @@ namespace HotelManagementApi.Bookings.Services
     public interface IBookingsService
     {
         List<Booking> GetBookings(GetBookings req);
-        Booking GetBooking(int bookingId);
         ReturnStatus SetBooking(SetBooking req);
     }
 }

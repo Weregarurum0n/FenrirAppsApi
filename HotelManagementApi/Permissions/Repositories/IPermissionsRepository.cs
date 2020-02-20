@@ -8,7 +8,6 @@ namespace HotelManagementApi.Permissions.Repositories
     public interface IPermissionsRepository
     {
         List<Permission> GetPermissions(GetPermissions req);
-        Permission GetPermission(int permissionId);
         ReturnStatus SetPermission(SetPermission req);
     }
 }

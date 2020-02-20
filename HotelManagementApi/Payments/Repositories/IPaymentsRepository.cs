@@ -8,7 +8,6 @@ namespace HotelManagementApi.Payments.Repositories
     public interface IPaymentsRepository
     {
         List<Payment> GetPayments(GetPayments req);
-        Payment GetPayment(int paymentId);
         ReturnStatus SetPayment(SetPayment req);
     }
 }

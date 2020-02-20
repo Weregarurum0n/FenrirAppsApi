@@ -10,10 +10,9 @@ namespace HotelManagementApi.Guests.Services
     {
         private readonly IGuestsRepository _repository;
 
-        public GuestsService() => _repository = new GuestsRepository();
+        public GuestsService(IGuestsRepository repository) => _repository = repository;
 
         public List<Guest> GetGuests(GetGuests req) => _repository.GetGuests(req);
-        public Guest GetGuest(int guestId) => _repository.GetGuest(guestId);
         public ReturnStatus SetGuest(SetGuest req) => _repository.SetGuest(req);
     }
 }

@@ -8,7 +8,6 @@ namespace HotelManagementApi.Guests.Repositories
     public interface IGuestsRepository
     {
         List<Guest> GetGuests(GetGuests req);
-        Guest GetGuest(int guestId);
         ReturnStatus SetGuest(SetGuest req);
     }
 }

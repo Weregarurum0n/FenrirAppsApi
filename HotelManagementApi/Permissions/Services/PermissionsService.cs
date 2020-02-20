@@ -10,10 +10,9 @@ namespace HotelManagementApi.Permissions.Services
     {
         private readonly IPermissionsRepository _repository;
 
-        public PermissionsService() => _repository = new PermissionsRepository();
+        public PermissionsService(IPermissionsRepository repository) => _repository = repository;
 
         public List<Permission> GetPermissions(GetPermissions req) => _repository.GetPermissions(req);
-        public Permission GetPermission(int permissionId) => _repository.GetPermission(permissionId);
         public ReturnStatus SetPermission(SetPermission req) => _repository.SetPermission(req);
     }
 }

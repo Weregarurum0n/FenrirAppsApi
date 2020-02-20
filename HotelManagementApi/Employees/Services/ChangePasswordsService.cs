@@ -8,7 +8,7 @@ namespace HotelManagementApi.Employees.Services
     {
         private readonly IChangePasswordsRepository _repository;
 
-        public ChangePasswordsService() => _repository = new ChangePasswordsRepository();
+        public ChangePasswordsService(IChangePasswordsRepository repository) => _repository = repository;
 
         public ReturnStatus SetPassword(SetPassword req) => _repository.SetPassword(req);
     }

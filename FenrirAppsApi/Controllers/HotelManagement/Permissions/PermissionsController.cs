@@ -12,13 +12,10 @@ namespace FenrirAppsApi.Controllers.HotelManagement
     {
         private static IPermissionsService _service;
 
-        public PermissionsController() => _service = new PermissionsService();
+        public PermissionsController(IPermissionsService service) => _service = service;
 
         [HttpGet]
         public List<Permission> GetPermissions(GetPermissions req) => _service.GetPermissions(req);
-
-        [HttpGet("{permissionId}")]
-        public Permission GetPermission(int permissionId) => _service.GetPermission(permissionId);
 
         [HttpPost]
         public ReturnStatus SetPermission([FromBody] SetPermission req) => _service.SetPermission(req);

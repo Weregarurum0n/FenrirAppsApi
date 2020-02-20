@@ -12,13 +12,10 @@ namespace FenrirAppsApi.Controllers.HotelManagement
     {
         private static IGuestsService _service;
 
-        public GuestsController() => _service = new GuestsService();
+        public GuestsController(IGuestsService service) => _service = service;
 
         [HttpGet]
         public List<Guest> GetGuests(GetGuests req) => _service.GetGuests(req);
-
-        [HttpGet("{guestId}")]
-        public Guest GetGuest(int guestId) => _service.GetGuest(guestId);
 
         [HttpPost]
         public ReturnStatus SetGuest([FromBody] SetGuest req) => _service.SetGuest(req);

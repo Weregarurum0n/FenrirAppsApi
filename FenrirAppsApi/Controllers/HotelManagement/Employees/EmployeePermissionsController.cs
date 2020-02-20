@@ -12,7 +12,7 @@ namespace FenrirAppsApi.Controllers.HotelManagement.Employees
     {
         private static IEmployeePermissionsService _service;
 
-        public EmployeePermissionsController() => _service = new EmployeePermissionsService();
+        public EmployeePermissionsController(IEmployeePermissionsService service) => _service = service;
 
         [HttpGet("{employeeId}")]
         public List<EmployeePermission> GetEmployeePermissions(int employeeId) => _service.GetEmployeePermissions(employeeId);

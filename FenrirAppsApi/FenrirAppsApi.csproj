@@ -4,6 +4,10 @@
     <TargetFramework>netcoreapp2.0</TargetFramework>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>C:\Users\jay_b\source\repos\FenrirAppsApi\FenrirAppsApi\FenrirAppsApi.xml</DocumentationFile>
+  </PropertyGroup>
+
   <ItemGroup>
     <Folder Include="Controllers\HotelManagement\UserSettings\" />
     <Folder Include="Controllers\HotelManagement\Themes\" />

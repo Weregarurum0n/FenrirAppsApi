@@ -12,13 +12,10 @@ namespace FenrirAppsApi.Controllers.HotelManagement.Constants
     {
         private static IConstantsService _service;
 
-        public ConstantsController() => _service = new ConstantsService();
+        public ConstantsController(IConstantsService service) => _service = service;
 
         [HttpGet]
         public List<Constant> GetConstants(GetConstants req) => _service.GetConstants(req);
-
-        [HttpGet("{constantId}")]
-        public Constant GetConstant(int constantId) => _service.GetConstant(constantId);
 
         [HttpPost]
         public ReturnStatus SetConstant([FromBody] SetConstant req) => _service.SetConstant(req);

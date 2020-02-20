@@ -14,13 +14,10 @@ namespace FenrirAppsApi.Controllers.HotelManagement.Bookings
     {
         private static IBookingsService _service;
 
-        public BookingsController() => _service = new BookingsService();
+        public BookingsController(IBookingsService service) => _service = service;
 
         [HttpGet]
         public List<Booking> GetBookings(GetBookings req) => _service.GetBookings(req);
-
-        [HttpGet("{bookingId}")]
-        public Booking GetBooking(int bookingId) => _service.GetBooking(bookingId);
 
         [HttpPost]
         public ReturnStatus SetBooking([FromBody] SetBooking req) => _service.SetBooking(req);

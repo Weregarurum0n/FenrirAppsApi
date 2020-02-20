@@ -8,7 +8,7 @@ namespace HotelManagementApi.Login.Services
     {
         private readonly ILoginRepository _repository;
 
-        public LoginService() => _repository = new LoginRepository();
+        public LoginService(ILoginRepository repository) => _repository = repository;
 
         public UserDetail Login(AuthLogin req)
         {

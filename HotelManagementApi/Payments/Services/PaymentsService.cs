@@ -10,10 +10,9 @@ namespace HotelManagementApi.Payments.Services
     {
         private readonly IPaymentsRepository _repository;
 
-        public PaymentsService() => _repository = new PaymentsRepository();
+        public PaymentsService(IPaymentsRepository repository) => _repository = repository;
 
         public List<Payment> GetPayments(GetPayments req) => _repository.GetPayments(req);
-        public Payment GetPayment(int paymentId) => _repository.GetPayment(paymentId);
         public ReturnStatus SetPayment(SetPayment req) => _repository.SetPayment(req);
     }
 }

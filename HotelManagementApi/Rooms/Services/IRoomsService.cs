@@ -8,7 +8,6 @@ namespace HotelManagementApi.Rooms.Services
     public interface IRoomsService
     {
         List<Room> GetRooms(GetRooms req);
-        Room GetRoom(int roomId);
         ReturnStatus SetRoom(SetRoom req);
     }
 }

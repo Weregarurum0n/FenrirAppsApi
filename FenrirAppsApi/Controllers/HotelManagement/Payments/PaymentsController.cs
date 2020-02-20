@@ -12,13 +12,10 @@ namespace FenrirAppsApi.Controllers.HotelManagement
     {
         private static IPaymentsService _service;
 
-        public PaymentsController() => _service = new PaymentsService();
+        public PaymentsController(IPaymentsService service) => _service = service;
 
         [HttpGet]
         public List<Payment> GetPayments(GetPayments req) => _service.GetPayments(req);
-
-        [HttpGet("{paymentId}")]
-        public Payment GetPayment(int paymentId) => _service.GetPayment(paymentId);
 
         [HttpPost]
         public ReturnStatus SetPayment([FromBody] SetPayment req) => _service.SetPayment(req);
