@@ -17,7 +17,7 @@ namespace FenrirAppsApi.Controllers.HotelManagement.Bookings
         public BookingsController(IBookingsService service) => _service = service;
 
         [HttpGet]
-        public List<Booking> GetBookings(GetBookings req) => _service.GetBookings(req);
+        public ApiResponse<List<Booking>> GetBookings(GetBookings req) => _service.GetBookings(req);
 
         [HttpPost]
         public ReturnStatus SetBooking([FromBody] SetBooking req) => _service.SetBooking(req);

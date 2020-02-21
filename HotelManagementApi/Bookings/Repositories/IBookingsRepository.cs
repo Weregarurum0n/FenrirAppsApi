@@ -7,7 +7,7 @@ namespace HotelManagementApi.Bookings.Repositories
 {
     public interface IBookingsRepository
     {
-        List<Booking> GetBookings(GetBookings req);
+        ApiResponse<List<Booking>> GetBookings(GetBookings req);
         ReturnStatus SetBooking(SetBooking req);
     }
 }

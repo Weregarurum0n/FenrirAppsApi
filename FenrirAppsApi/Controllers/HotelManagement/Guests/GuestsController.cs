@@ -15,7 +15,7 @@ namespace FenrirAppsApi.Controllers.HotelManagement
         public GuestsController(IGuestsService service) => _service = service;
 
         [HttpGet]
-        public List<Guest> GetGuests(GetGuests req) => _service.GetGuests(req);
+        public ApiResponse<List<Guest>> GetGuests(GetGuests req) => _service.GetGuests(req);
 
         [HttpPost]
         public ReturnStatus SetGuest([FromBody] SetGuest req) => _service.SetGuest(req);

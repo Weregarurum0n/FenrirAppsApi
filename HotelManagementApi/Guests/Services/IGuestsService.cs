@@ -7,7 +7,7 @@ namespace HotelManagementApi.Guests.Services
 {
     public interface IGuestsService
     {
-        List<Guest> GetGuests(GetGuests req);
+        ApiResponse<List<Guest>> GetGuests(GetGuests req);
         ReturnStatus SetGuest(SetGuest req);
     }
 }

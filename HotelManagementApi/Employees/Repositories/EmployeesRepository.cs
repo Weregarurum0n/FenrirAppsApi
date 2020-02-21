@@ -22,7 +22,7 @@ namespace HotelManagementApi.Employees.Repositories
             _requestInfo = requestInfo;
         }
 
-        public List<Employee> GetEmployees(GetEmployees req)
+        public ApiResponse<List<Employee>> GetEmployees(GetEmployees req)
         {
             var result = null as List<Employee>;
             using (var connection = new SqlConnection(_connectionString.Conn))
@@ -31,8 +31,8 @@ namespace HotelManagementApi.Employees.Repositories
 
                 cmd.Parameters.AddWithValue("@UserID", _requestInfo.UserId);
 
-                cmd.Parameters.Add("@lRetVal", SqlDbType.Int).Direction = ParameterDirection.Output;
-                cmd.Parameters.Add("@sRetMsg", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
+                cmd.Parameters.Add("@RetVal", SqlDbType.Int).Direction = ParameterDirection.Output;
+                cmd.Parameters.Add("@RetMsg", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
 
                 cmd.Parameters.AddWithValue("@EmployeeID", req.EmployeeId);
                 cmd.Parameters.AddWithValue("@UserName", req.UserName);
@@ -82,8 +82,13 @@ namespace HotelManagementApi.Employees.Repositories
                         });
                     }
                 }
+                return new ApiResponse<List<Employee>>
+                {
+                    Content = result,
+                    Status = new ReturnStatus(cmd.Parameters["@RetVal"].Value.ToSafeInt32(),
+                            cmd.Parameters["@RetMsg"].Value.ToSafeString())
+                };
             }
-            return result;
         }
 
         public ReturnStatus SetEmployee(SetEmployee req)
@@ -97,8 +102,8 @@ namespace HotelManagementApi.Employees.Repositories
 
                 cmd.Parameters.AddWithValue("@UserID", _requestInfo.UserId);
 
-                cmd.Parameters.Add("@lRetVal", SqlDbType.Int).Direction = ParameterDirection.Output;
-                cmd.Parameters.Add("@sRetMsg", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
+                cmd.Parameters.Add("@RetVal", SqlDbType.Int).Direction = ParameterDirection.Output;
+                cmd.Parameters.Add("@RetMsg", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
 
                 cmd.Parameters.AddWithValue("@EmployeeID", req.EmployeeId);
                 cmd.Parameters.AddWithValue("@UserName", req.UserName);
@@ -112,14 +117,14 @@ namespace HotelManagementApi.Employees.Repositories
                 cmd.Parameters.AddWithValue("@EmployeeTypeID", req.EmployeeTypeId);
                 cmd.Parameters.AddWithValue("@StartDateTime", req.StartDateTime);
                 cmd.Parameters.AddWithValue("@LastLoginDateTime", req.LastLoginDateTime);
-                cmd.Parameters.AddWithValue("@IncludeTerminated", req.IncludeTerminated);
+                cmd.Parameters.AddWithValue("@Terminate", req.Terminate);
                 cmd.Parameters.AddWithValue("@TerminatedDateTime", req.TerminatedDateTime);
 
                 connection.Open();
 
                 cmd.ExecuteNonQuery();
 
-                return new ReturnStatus(cmd.Parameters["@lRetVal"].Value.ToSafeInt32(), cmd.Parameters["@sRetMsg"].Value.ToSafeString());
+                return new ReturnStatus(cmd.Parameters["@RetVal"].Value.ToSafeInt32(), cmd.Parameters["@RetMsg"].Value.ToSafeString());
             }
         }
     }

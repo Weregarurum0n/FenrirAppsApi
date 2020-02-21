@@ -15,7 +15,7 @@ namespace FenrirAppsApi.Controllers.HotelManagement
         public RoomsController(IRoomsService service) => _service = service;
 
         [HttpGet]
-        public List<Room> GetRooms(GetRooms req) => _service.GetRooms(req);
+        public ApiResponse<List<Room>> GetRooms(GetRooms req) => _service.GetRooms(req);
 
         [HttpPost]
         public ReturnStatus SetRoom([FromBody] SetRoom req) => _service.SetRoom(req);

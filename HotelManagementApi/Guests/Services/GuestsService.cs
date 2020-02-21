@@ -12,7 +12,7 @@ namespace HotelManagementApi.Guests.Services
 
         public GuestsService(IGuestsRepository repository) => _repository = repository;
 
-        public List<Guest> GetGuests(GetGuests req) => _repository.GetGuests(req);
+        public ApiResponse<List<Guest>> GetGuests(GetGuests req) => _repository.GetGuests(req);
         public ReturnStatus SetGuest(SetGuest req) => _repository.SetGuest(req);
     }
 }

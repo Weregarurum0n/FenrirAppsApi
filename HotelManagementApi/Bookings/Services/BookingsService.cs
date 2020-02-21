@@ -12,7 +12,7 @@ namespace HotelManagementApi.Bookings.Services
 
         public BookingsService(IBookingsRepository repository) => _repository = repository;
 
-        public List<Booking> GetBookings(GetBookings req) => _repository.GetBookings(req);
+        public ApiResponse<List<Booking>> GetBookings(GetBookings req) => _repository.GetBookings(req);
         public ReturnStatus SetBooking(SetBooking req) => _repository.SetBooking(req);
     }
 }

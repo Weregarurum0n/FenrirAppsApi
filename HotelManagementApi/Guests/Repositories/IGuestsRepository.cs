@@ -7,7 +7,7 @@ namespace HotelManagementApi.Guests.Repositories
 {
     public interface IGuestsRepository
     {
-        List<Guest> GetGuests(GetGuests req);
+        ApiResponse<List<Guest>> GetGuests(GetGuests req);
         ReturnStatus SetGuest(SetGuest req);
     }
 }

@@ -15,7 +15,7 @@ namespace FenrirAppsApi.Controllers.HotelManagement
         public PaymentsController(IPaymentsService service) => _service = service;
 
         [HttpGet]
-        public List<Payment> GetPayments(GetPayments req) => _service.GetPayments(req);
+        public ApiResponse<List<Payment>> GetPayments(GetPayments req) => _service.GetPayments(req);
 
         [HttpPost]
         public ReturnStatus SetPayment([FromBody] SetPayment req) => _service.SetPayment(req);

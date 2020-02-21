@@ -22,7 +22,7 @@ namespace HotelManagementApi.Permissions.Repositories
             _requestInfo = requestInfo;
         }
 
-        public List<Permission> GetPermissions(GetPermissions req)
+        public ApiResponse<List<Permission>> GetPermissions(GetPermissions req)
         {
             var result = null as List<Permission>;
             using (var connection = new SqlConnection(_connectionString.Conn))
@@ -31,15 +31,15 @@ namespace HotelManagementApi.Permissions.Repositories
 
                 cmd.Parameters.AddWithValue("@UserID", _requestInfo.UserId);
 
-                cmd.Parameters.Add("@lRetVal", SqlDbType.Int).Direction = ParameterDirection.Output;
-                cmd.Parameters.Add("@sRetMsg", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
+                cmd.Parameters.Add("@RetVal", SqlDbType.Int).Direction = ParameterDirection.Output;
+                cmd.Parameters.Add("@RetMsg", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
 
                 cmd.Parameters.AddWithValue("@PermissionID", req.PermissionId);
                 cmd.Parameters.AddWithValue("@ParentID", req.ParentId);
                 cmd.Parameters.AddWithValue("@Code", req.Code);
                 cmd.Parameters.AddWithValue("@Name", req.Name);
                 cmd.Parameters.AddWithValue("@Description", req.Description);
-                cmd.Parameters.AddWithValue("@Disable", req.IncludeDisabled);
+                cmd.Parameters.AddWithValue("@IncludeDisabled", req.IncludeDisabled);
 
                 connection.Open();
 
@@ -66,8 +66,13 @@ namespace HotelManagementApi.Permissions.Repositories
                         });
                     }
                 }
+                return new ApiResponse<List<Permission>>
+                {
+                    Content = result,
+                    Status = new ReturnStatus(cmd.Parameters["@RetVal"].Value.ToSafeInt32(),
+                            cmd.Parameters["@RetMsg"].Value.ToSafeString())
+                };
             }
-            return result;
         }
 
         public ReturnStatus SetPermission(SetPermission req)
@@ -81,8 +86,8 @@ namespace HotelManagementApi.Permissions.Repositories
 
                 cmd.Parameters.AddWithValue("@UserID", _requestInfo.UserId);
 
-                cmd.Parameters.Add("@lRetVal", SqlDbType.Int).Direction = ParameterDirection.Output;
-                cmd.Parameters.Add("@sRetMsg", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
+                cmd.Parameters.Add("@RetVal", SqlDbType.Int).Direction = ParameterDirection.Output;
+                cmd.Parameters.Add("@RetMsg", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
 
                 cmd.Parameters.AddWithValue("@PermissionID", req.PermissionId);
                 cmd.Parameters.AddWithValue("@ParentID", req.ParentId);
@@ -95,7 +100,7 @@ namespace HotelManagementApi.Permissions.Repositories
 
                 cmd.ExecuteNonQuery();
 
-                return new ReturnStatus(cmd.Parameters["@lRetVal"].Value.ToSafeInt32(), cmd.Parameters["@sRetMsg"].Value.ToSafeString());
+                return new ReturnStatus(cmd.Parameters["@RetVal"].Value.ToSafeInt32(), cmd.Parameters["@RetMsg"].Value.ToSafeString());
             }
         }
     }

@@ -12,13 +12,13 @@ namespace HotelManagementApi.Locations.Services
 
         public LocationsService(ILocationsRepository repository) => _repository = repository;
 
-        public List<Country> GetCountries() => _repository.GetCountries();
+        public ApiResponse<List<Country>> GetCountries() => _repository.GetCountries();
         public ReturnStatus SetCountry(SetCountry req) => _repository.SetCountry(req);
 
-        public List<State> GetStates(int countryId) => _repository.GetStates(countryId);
+        public ApiResponse<List<State>> GetStates(int countryId) => _repository.GetStates(countryId);
         public ReturnStatus SetState(SetState req) => _repository.SetState(req);
 
-        public List<City> GetCities(int countryId, int stateId) => _repository.GetCities(countryId, stateId);
+        public ApiResponse<List<City>> GetCities(int countryId, int stateId) => _repository.GetCities(countryId, stateId);
         public ReturnStatus SetCity(SetCity req) => _repository.SetCity(req);
     }
 }

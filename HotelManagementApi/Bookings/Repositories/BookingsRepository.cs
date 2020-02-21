@@ -22,7 +22,7 @@ namespace HotelManagementApi.Bookings.Repositories
             _requestInfo = requestInfo;
         }
 
-        public List<Booking> GetBookings(GetBookings req)
+        public ApiResponse<List<Booking>> GetBookings(GetBookings req)
         {
             var result = null as List<Booking>;
             using (var connection = new SqlConnection(_connectionString.Conn))
@@ -31,8 +31,8 @@ namespace HotelManagementApi.Bookings.Repositories
 
                 cmd.Parameters.AddWithValue("@UserID", _requestInfo.UserId);
 
-                cmd.Parameters.Add("@lRetVal", SqlDbType.Int).Direction = ParameterDirection.Output;
-                cmd.Parameters.Add("@sRetMsg", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
+                cmd.Parameters.Add("@RetVal", SqlDbType.Int).Direction = ParameterDirection.Output;
+                cmd.Parameters.Add("@RetMsg", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
 
                 cmd.Parameters.AddWithValue("@BookingID", req.BookingId);
                 cmd.Parameters.AddWithValue("@GuestID", req.GuestId);
@@ -63,7 +63,7 @@ namespace HotelManagementApi.Bookings.Repositories
                             BookRate = dr["BookRate"].ToSafeDecimal(),
                             Comment = dr["Comment"].ToSafeString(),
                             Canceled = dr["Canceled"].ToSafeBool(),
-                            CanceledDate = dr["fTo"].ToSafeDateTime(),
+                            CanceledDate = dr["CanceledDate"].ToSafeDateTime(),
 
                             CreatedId = dr["CreatedID"].ToSafeInt32(),
                             CreatedBy = dr["CreatedBy"].ToSafeString(),
@@ -74,8 +74,13 @@ namespace HotelManagementApi.Bookings.Repositories
                         });
                     }
                 }
+                return new ApiResponse<List<Booking>>
+                {
+                    Content = result,
+                    Status = new ReturnStatus(cmd.Parameters["@RetVal"].Value.ToSafeInt32(),
+                            cmd.Parameters["@RetMsg"].Value.ToSafeString())
+                };
             }
-            return result;
         }
 
         public ReturnStatus SetBooking(SetBooking req)
@@ -89,8 +94,8 @@ namespace HotelManagementApi.Bookings.Repositories
 
                 cmd.Parameters.AddWithValue("@UserID", _requestInfo.UserId);
 
-                cmd.Parameters.Add("@lRetVal", SqlDbType.Int).Direction = ParameterDirection.Output;
-                cmd.Parameters.Add("@sRetMsg", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
+                cmd.Parameters.Add("@RetVal", SqlDbType.Int).Direction = ParameterDirection.Output;
+                cmd.Parameters.Add("@RetMsg", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
 
                 cmd.Parameters.AddWithValue("@BookingID", req.BookingId);
                 cmd.Parameters.AddWithValue("@GuestID", req.GuestId);
@@ -100,14 +105,14 @@ namespace HotelManagementApi.Bookings.Repositories
                 cmd.Parameters.AddWithValue("@BookTypeID", req.BookTypeId);
                 cmd.Parameters.AddWithValue("@BookRate", req.BookRate);
                 cmd.Parameters.AddWithValue("@Comment", req.Comment);
-                cmd.Parameters.AddWithValue("@IncludeCanceled", req.IncludeCanceled);
+                cmd.Parameters.AddWithValue("@Cancel", req.Cancel);
                 cmd.Parameters.AddWithValue("@CanceledDate", req.CanceledDate);
 
                 connection.Open();
 
                 cmd.ExecuteNonQuery();
 
-                return new ReturnStatus(cmd.Parameters["@lRetVal"].Value.ToSafeInt32(), cmd.Parameters["@sRetMsg"].Value.ToSafeString());
+                return new ReturnStatus(cmd.Parameters["@RetVal"].Value.ToSafeInt32(), cmd.Parameters["@RetMsg"].Value.ToSafeString());
             }
         }
     }

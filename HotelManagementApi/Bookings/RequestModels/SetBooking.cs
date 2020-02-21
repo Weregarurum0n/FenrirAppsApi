@@ -12,7 +12,7 @@ namespace HotelManagementApi.Bookings.RequestModels
         public int? BookTypeId { get; set; }
         public decimal? BookRate { get; set; }
         public string Comment { get; set; }
-        public bool IncludeCanceled { get; set; }
+        public bool Cancel { get; set; }
         public DateTime? CanceledDate { get; set; }
     }
 }

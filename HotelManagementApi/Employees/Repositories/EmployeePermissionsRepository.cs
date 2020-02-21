@@ -22,7 +22,7 @@ namespace HotelManagementApi.Employees.Repositories
             _requestInfo = requestInfo;
         }
 
-        public List<EmployeePermission> GetEmployeePermissions(int employeeId)
+        public ApiResponse<List<EmployeePermission>> GetEmployeePermissions(int employeeId)
         {
             var result = null as List<EmployeePermission>;
             using (var connection = new SqlConnection(_connectionString.Conn))
@@ -31,8 +31,8 @@ namespace HotelManagementApi.Employees.Repositories
 
                 cmd.Parameters.AddWithValue("@UserID", _requestInfo.UserId);
 
-                cmd.Parameters.Add("@lRetVal", SqlDbType.Int).Direction = ParameterDirection.Output;
-                cmd.Parameters.Add("@sRetMsg", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
+                cmd.Parameters.Add("@RetVal", SqlDbType.Int).Direction = ParameterDirection.Output;
+                cmd.Parameters.Add("@RetMsg", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
 
                 cmd.Parameters.AddWithValue("@EmployeeId", employeeId);
 
@@ -58,8 +58,13 @@ namespace HotelManagementApi.Employees.Repositories
                         });
                     }
                 }
+                return new ApiResponse<List<EmployeePermission>>
+                {
+                    Content = result,
+                    Status = new ReturnStatus(cmd.Parameters["@RetVal"].Value.ToSafeInt32(),
+                            cmd.Parameters["@RetMsg"].Value.ToSafeString())
+                };
             }
-            return result;
         }
 
         public ReturnStatus SetEmployeePermission(SetEmployeePermission req)
@@ -73,8 +78,8 @@ namespace HotelManagementApi.Employees.Repositories
 
                 cmd.Parameters.AddWithValue("@UserID", _requestInfo.UserId);
 
-                cmd.Parameters.Add("@lRetVal", SqlDbType.Int).Direction = ParameterDirection.Output;
-                cmd.Parameters.Add("@sRetMsg", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
+                cmd.Parameters.Add("@RetVal", SqlDbType.Int).Direction = ParameterDirection.Output;
+                cmd.Parameters.Add("@RetMsg", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
 
                 cmd.Parameters.AddWithValue("@EmployeeId", req.EmployeeId);
                 cmd.Parameters.AddWithValue("@PermissionId", req.PermissionId);
@@ -84,7 +89,7 @@ namespace HotelManagementApi.Employees.Repositories
 
                 cmd.ExecuteNonQuery();
 
-                return new ReturnStatus(cmd.Parameters["@lRetVal"].Value.ToSafeInt32(), cmd.Parameters["@sRetMsg"].Value.ToSafeString());
+                return new ReturnStatus(cmd.Parameters["@RetVal"].Value.ToSafeInt32(), cmd.Parameters["@RetMsg"].Value.ToSafeString());
             }
         }
     }

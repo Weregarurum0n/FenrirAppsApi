@@ -12,7 +12,7 @@ namespace HotelManagementApi.Payments.Services
 
         public PaymentsService(IPaymentsRepository repository) => _repository = repository;
 
-        public List<Payment> GetPayments(GetPayments req) => _repository.GetPayments(req);
+        public ApiResponse<List<Payment>> GetPayments(GetPayments req) => _repository.GetPayments(req);
         public ReturnStatus SetPayment(SetPayment req) => _repository.SetPayment(req);
     }
 }

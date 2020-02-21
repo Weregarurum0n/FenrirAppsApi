@@ -22,7 +22,7 @@ namespace HotelManagementApi.Guests.Repositories
             _requestInfo = requestInfo;
         }
 
-        public List<Guest> GetGuests(GetGuests req)
+        public ApiResponse<List<Guest>> GetGuests(GetGuests req)
         {
             var result = null as List<Guest>;
             using (var connection = new SqlConnection(_connectionString.Conn))
@@ -31,8 +31,8 @@ namespace HotelManagementApi.Guests.Repositories
 
                 cmd.Parameters.AddWithValue("@UserID", _requestInfo.UserId);
 
-                cmd.Parameters.Add("@lRetVal", SqlDbType.Int).Direction = ParameterDirection.Output;
-                cmd.Parameters.Add("@sRetMsg", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
+                cmd.Parameters.Add("@RetVal", SqlDbType.Int).Direction = ParameterDirection.Output;
+                cmd.Parameters.Add("@RetMsg", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
 
                 cmd.Parameters.AddWithValue("@GuestID", req.GuestId);
                 cmd.Parameters.AddWithValue("@FirstName", req.FirstName);
@@ -88,8 +88,13 @@ namespace HotelManagementApi.Guests.Repositories
                         });
                     }
                 }
+                return new ApiResponse<List<Guest>>
+                {
+                    Content = result,
+                    Status = new ReturnStatus(cmd.Parameters["@RetVal"].Value.ToSafeInt32(),
+                            cmd.Parameters["@RetMsg"].Value.ToSafeString())
+                };
             }
-            return result;
         }
 
         public ReturnStatus SetGuest(SetGuest req)
@@ -103,8 +108,8 @@ namespace HotelManagementApi.Guests.Repositories
 
                 cmd.Parameters.AddWithValue("@UserID", _requestInfo.UserId);
 
-                cmd.Parameters.Add("@lRetVal", SqlDbType.Int).Direction = ParameterDirection.Output;
-                cmd.Parameters.Add("@sRetMsg", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
+                cmd.Parameters.Add("@RetVal", SqlDbType.Int).Direction = ParameterDirection.Output;
+                cmd.Parameters.Add("@RetMsg", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
 
                 cmd.Parameters.AddWithValue("@GuestID", req.GuestId);
                 cmd.Parameters.AddWithValue("@FirstName", req.FirstName);
@@ -113,7 +118,7 @@ namespace HotelManagementApi.Guests.Repositories
                 cmd.Parameters.AddWithValue("@LastName2", req.LastName2);
                 cmd.Parameters.AddWithValue("@GuestTypeID", req.GuestTypeId);
                 cmd.Parameters.AddWithValue("@DLNo", req.DLNo);
-                cmd.Parameters.AddWithValue("@BlackList", req.BlackListed);
+                cmd.Parameters.AddWithValue("@BlackList", req.BlackList);
                 cmd.Parameters.AddWithValue("@BlackListDate", req.BlackListDate);
                 cmd.Parameters.AddWithValue("@StreetAddress", req.StreetAddress);
                 cmd.Parameters.AddWithValue("@CityID", req.CityId);
@@ -128,7 +133,7 @@ namespace HotelManagementApi.Guests.Repositories
 
                 cmd.ExecuteNonQuery();
 
-                return new ReturnStatus(cmd.Parameters["@lRetVal"].Value.ToSafeInt32(), cmd.Parameters["@sRetMsg"].Value.ToSafeString());
+                return new ReturnStatus(cmd.Parameters["@RetVal"].Value.ToSafeInt32(), cmd.Parameters["@RetMsg"].Value.ToSafeString());
             }
         }
     }

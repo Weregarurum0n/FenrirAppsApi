@@ -12,7 +12,7 @@ namespace HotelManagementApi.Employees.Services
 
         public EmployeePermissionsService(IEmployeePermissionsRepository repository) => _repository = repository;
 
-        public List<EmployeePermission> GetEmployeePermissions(int employeeId) => _repository.GetEmployeePermissions(employeeId);
+        public ApiResponse<List<EmployeePermission>> GetEmployeePermissions(int employeeId) => _repository.GetEmployeePermissions(employeeId);
         public ReturnStatus SetEmployeePermission(SetEmployeePermission req) => _repository.SetEmployeePermission(req);
     }
 }

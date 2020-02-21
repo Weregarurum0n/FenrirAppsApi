@@ -12,7 +12,7 @@ namespace HotelManagementApi.Employees.Services
 
         public EmployeesService(IEmployeesRepository repository) => _repository = repository;
 
-        public List<Employee> GetEmployees(GetEmployees req) => _repository.GetEmployees(req);
+        public ApiResponse<List<Employee>> GetEmployees(GetEmployees req) => _repository.GetEmployees(req);
         public ReturnStatus SetEmployee(SetEmployee req) => _repository.SetEmployee(req);
     }
 }

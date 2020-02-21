@@ -7,7 +7,7 @@ namespace HotelManagementApi.Payments.Services
 {
     public interface IPaymentsService
     {
-        List<Payment> GetPayments(GetPayments req);
+        ApiResponse<List<Payment>> GetPayments(GetPayments req);
         ReturnStatus SetPayment(SetPayment req);
     }
 }

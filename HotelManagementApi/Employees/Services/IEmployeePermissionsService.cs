@@ -7,7 +7,7 @@ namespace HotelManagementApi.Employees.Services
 {
     public interface IEmployeePermissionsService
     {
-        List<EmployeePermission> GetEmployeePermissions(int employeeId);
+        ApiResponse<List<EmployeePermission>> GetEmployeePermissions(int employeeId);
         ReturnStatus SetEmployeePermission(SetEmployeePermission req);
     }
 }

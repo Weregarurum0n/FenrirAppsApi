@@ -15,7 +15,7 @@ namespace FenrirAppsApi.Controllers.HotelManagement.Employees
         public EmployeePermissionsController(IEmployeePermissionsService service) => _service = service;
 
         [HttpGet("{employeeId}")]
-        public List<EmployeePermission> GetEmployeePermissions(int employeeId) => _service.GetEmployeePermissions(employeeId);
+        public ApiResponse<List<EmployeePermission>> GetEmployeePermissions(int employeeId) => _service.GetEmployeePermissions(employeeId);
 
         [HttpPost]
         public ReturnStatus SetEmployeePermission([FromBody] SetEmployeePermission req) => _service.SetEmployeePermission(req);

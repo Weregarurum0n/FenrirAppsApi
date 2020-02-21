@@ -7,7 +7,7 @@ namespace HotelManagementApi.Constants.Repositories
 {
     public interface IConstantsRepository
     {
-        List<Constant> GetConstants(GetConstants req);
+        ApiResponse<List<Constant>> GetConstants(GetConstants req);
         ReturnStatus SetConstant(SetConstant req);
     }
 }

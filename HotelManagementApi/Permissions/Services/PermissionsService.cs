@@ -12,7 +12,7 @@ namespace HotelManagementApi.Permissions.Services
 
         public PermissionsService(IPermissionsRepository repository) => _repository = repository;
 
-        public List<Permission> GetPermissions(GetPermissions req) => _repository.GetPermissions(req);
+        public ApiResponse<List<Permission>> GetPermissions(GetPermissions req) => _repository.GetPermissions(req);
         public ReturnStatus SetPermission(SetPermission req) => _repository.SetPermission(req);
     }
 }

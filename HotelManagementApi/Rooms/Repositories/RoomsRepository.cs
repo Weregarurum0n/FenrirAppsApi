@@ -22,7 +22,7 @@ namespace HotelManagementApi.Rooms.Repositories
             _requestInfo = requestInfo;
         }
 
-        public List<Room> GetRooms(GetRooms req)
+        public ApiResponse<List<Room>> GetRooms(GetRooms req)
         {
             var result = null as List<Room>;
             using (var connection = new SqlConnection(_connectionString.Conn))
@@ -31,8 +31,8 @@ namespace HotelManagementApi.Rooms.Repositories
 
                 cmd.Parameters.AddWithValue("@UserID", _requestInfo.UserId);
 
-                cmd.Parameters.Add("@lRetVal", SqlDbType.Int).Direction = ParameterDirection.Output;
-                cmd.Parameters.Add("@sRetMsg", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
+                cmd.Parameters.Add("@RetVal", SqlDbType.Int).Direction = ParameterDirection.Output;
+                cmd.Parameters.Add("@RetMsg", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
 
                 cmd.Parameters.AddWithValue("@RoomID", req.RoomId);
                 cmd.Parameters.AddWithValue("@RoomNo", req.RoomNo);
@@ -40,7 +40,7 @@ namespace HotelManagementApi.Rooms.Repositories
                 cmd.Parameters.AddWithValue("@RoomRate", req.RoomRate);
                 cmd.Parameters.AddWithValue("@RoomStatusID", req.RoomStatusId);
                 cmd.Parameters.AddWithValue("@MaxCapacity", req.MaxCapacity);
-                cmd.Parameters.AddWithValue("@Disable", req.IncludeDisabled);
+                cmd.Parameters.AddWithValue("@IncludeDisabled", req.IncludeDisabled);
 
                 connection.Open();
 
@@ -61,8 +61,13 @@ namespace HotelManagementApi.Rooms.Repositories
                         });
                     }
                 }
+                return new ApiResponse<List<Room>>
+                {
+                    Content = result,
+                    Status = new ReturnStatus(cmd.Parameters["@RetVal"].Value.ToSafeInt32(),
+                            cmd.Parameters["@RetMsg"].Value.ToSafeString())
+                };
             }
-            return result;
         }
 
         public ReturnStatus SetRoom(SetRoom req)
@@ -76,8 +81,8 @@ namespace HotelManagementApi.Rooms.Repositories
 
                 cmd.Parameters.AddWithValue("@UserID", _requestInfo.UserId);
 
-                cmd.Parameters.Add("@lRetVal", SqlDbType.Int).Direction = ParameterDirection.Output;
-                cmd.Parameters.Add("@sRetMsg", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
+                cmd.Parameters.Add("@RetVal", SqlDbType.Int).Direction = ParameterDirection.Output;
+                cmd.Parameters.Add("@RetMsg", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
 
                 cmd.Parameters.AddWithValue("@RoomID", req.RoomId);
                 cmd.Parameters.AddWithValue("@RoomNo", req.RoomNo);
@@ -91,7 +96,7 @@ namespace HotelManagementApi.Rooms.Repositories
 
                 cmd.ExecuteNonQuery();
 
-                return new ReturnStatus(cmd.Parameters["@lRetVal"].Value.ToSafeInt32(), cmd.Parameters["@sRetMsg"].Value.ToSafeString());
+                return new ReturnStatus(cmd.Parameters["@RetVal"].Value.ToSafeInt32(), cmd.Parameters["@RetMsg"].Value.ToSafeString());
             }
         }
     }

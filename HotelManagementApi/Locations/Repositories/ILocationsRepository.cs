@@ -7,13 +7,13 @@ namespace HotelManagementApi.Locations.Repositories
 {
     public interface ILocationsRepository
     {
-        List<Country> GetCountries();
+        ApiResponse<List<Country>> GetCountries();
         ReturnStatus SetCountry(SetCountry req);
 
-        List<State> GetStates(int countryId);
+        ApiResponse<List<State>> GetStates(int countryId);
         ReturnStatus SetState(SetState req);
 
-        List<City> GetCities(int countryId, int stateId);
+        ApiResponse<List<City>> GetCities(int countryId, int stateId);
         ReturnStatus SetCity(SetCity req);
     }
 }

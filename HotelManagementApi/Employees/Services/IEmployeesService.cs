@@ -7,7 +7,7 @@ namespace HotelManagementApi.Employees.Services
 {
     public interface IEmployeesService
     {
-        List<Employee> GetEmployees(GetEmployees req);
+        ApiResponse<List<Employee>> GetEmployees(GetEmployees req);
         ReturnStatus SetEmployee(SetEmployee req);
     }
 }

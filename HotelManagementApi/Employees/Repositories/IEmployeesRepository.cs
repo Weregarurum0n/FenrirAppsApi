@@ -7,7 +7,7 @@ namespace HotelManagementApi.Employees.Repositories
 {
     public interface IEmployeesRepository
     {
-        List<Employee> GetEmployees(GetEmployees req);
+        ApiResponse<List<Employee>> GetEmployees(GetEmployees req);
         ReturnStatus SetEmployee(SetEmployee req);
     }
 }

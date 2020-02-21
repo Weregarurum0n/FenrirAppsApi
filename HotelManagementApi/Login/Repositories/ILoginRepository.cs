@@ -1,10 +1,11 @@
 ﻿using HotelManagementApi.Login.RequestModels;
 using HotelManagementApi.Login.ResponseModels;
+using HotelManagementApi.Shared;
 
 namespace HotelManagementApi.Login.Repositories
 {
     public interface ILoginRepository
     {
-        UserDetail Login(AuthLogin req);
+        ApiResponse<UserDetail> GetUserDetails(AuthLogin req);
     }
 }

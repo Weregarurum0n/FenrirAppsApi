@@ -22,7 +22,7 @@ namespace HotelManagementApi.Constants.Repositories
             _requestInfo = requestInfo;
         }
 
-        public List<Constant> GetConstants(GetConstants req)
+        public ApiResponse<List<Constant>> GetConstants(GetConstants req)
         {
             var result = null as List<Constant>;
             using (var connection = new SqlConnection(_connectionString.Conn))
@@ -31,14 +31,14 @@ namespace HotelManagementApi.Constants.Repositories
 
                 cmd.Parameters.AddWithValue("@UserID", _requestInfo.UserId);
 
-                cmd.Parameters.Add("@lRetVal", SqlDbType.Int).Direction = ParameterDirection.Output;
-                cmd.Parameters.Add("@sRetMsg", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
+                cmd.Parameters.Add("@RetVal", SqlDbType.Int).Direction = ParameterDirection.Output;
+                cmd.Parameters.Add("@RetMsg", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
 
                 cmd.Parameters.AddWithValue("@ConstantID", req.ConstantId);
                 cmd.Parameters.AddWithValue("@ParentID", req.ParentId);
                 cmd.Parameters.AddWithValue("@Name", req.Name);
                 cmd.Parameters.AddWithValue("@Description", req.Description);
-                cmd.Parameters.AddWithValue("@Disable", req.IncludeDisabled);
+                cmd.Parameters.AddWithValue("@IncludeDisabled", req.IncludeDisabled);
 
                 connection.Open();
 
@@ -64,8 +64,13 @@ namespace HotelManagementApi.Constants.Repositories
                         });
                     }
                 }
+                return new ApiResponse<List<Constant>>
+                {
+                    Content = result,
+                    Status = new ReturnStatus(cmd.Parameters["@RetVal"].Value.ToSafeInt32(),
+                            cmd.Parameters["@RetMsg"].Value.ToSafeString())
+                };
             }
-            return result;
         }
 
         public ReturnStatus SetConstant(SetConstant req)
@@ -79,20 +84,20 @@ namespace HotelManagementApi.Constants.Repositories
 
                 cmd.Parameters.AddWithValue("@UserID", _requestInfo.UserId);
 
-                cmd.Parameters.Add("@lRetVal", SqlDbType.Int).Direction = ParameterDirection.Output;
-                cmd.Parameters.Add("@sRetMsg", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
+                cmd.Parameters.Add("@RetVal", SqlDbType.Int).Direction = ParameterDirection.Output;
+                cmd.Parameters.Add("@RetMsg", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
 
                 cmd.Parameters.AddWithValue("@ConstantID", req.ConstantId);
                 cmd.Parameters.AddWithValue("@ParentID", req.ParentId);
                 cmd.Parameters.AddWithValue("@Name", req.Name);
                 cmd.Parameters.AddWithValue("@Description", req.Description);
-                cmd.Parameters.AddWithValue("@Disable", req.IncludeDisabled);
+                cmd.Parameters.AddWithValue("@Disable", req.Disable);
 
                 connection.Open();
 
                 cmd.ExecuteNonQuery();
 
-                return new ReturnStatus(cmd.Parameters["@lRetVal"].Value.ToSafeInt32(), cmd.Parameters["@sRetMsg"].Value.ToSafeString());
+                return new ReturnStatus(cmd.Parameters["@RetVal"].Value.ToSafeInt32(), cmd.Parameters["@RetMsg"].Value.ToSafeString());
             }
         }
     }

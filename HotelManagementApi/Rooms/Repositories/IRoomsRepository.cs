@@ -7,7 +7,7 @@ namespace HotelManagementApi.Rooms.Repositories
 {
     public interface IRoomsRepository
     {
-        List<Room> GetRooms(GetRooms req);
+        ApiResponse<List<Room>> GetRooms(GetRooms req);
         ReturnStatus SetRoom(SetRoom req);
     }
 }

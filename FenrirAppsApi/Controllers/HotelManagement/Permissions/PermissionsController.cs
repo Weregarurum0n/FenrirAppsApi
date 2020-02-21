@@ -15,7 +15,7 @@ namespace FenrirAppsApi.Controllers.HotelManagement
         public PermissionsController(IPermissionsService service) => _service = service;
 
         [HttpGet]
-        public List<Permission> GetPermissions(GetPermissions req) => _service.GetPermissions(req);
+        public ApiResponse<List<Permission>> GetPermissions(GetPermissions req) => _service.GetPermissions(req);
 
         [HttpPost]
         public ReturnStatus SetPermission([FromBody] SetPermission req) => _service.SetPermission(req);

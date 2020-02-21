@@ -12,7 +12,7 @@ namespace HotelManagementApi.Rooms.Services
 
         public RoomsService(IRoomsRepository repository) => _repository = repository;
 
-        public List<Room> GetRooms(GetRooms req) => _repository.GetRooms(req);
+        public ApiResponse<List<Room>> GetRooms(GetRooms req) => _repository.GetRooms(req);
         public ReturnStatus SetRoom(SetRoom req) => _repository.SetRoom(req);
     }
 }

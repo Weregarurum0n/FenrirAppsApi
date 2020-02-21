@@ -15,7 +15,7 @@ namespace FenrirAppsApi.Controllers.HotelManagement.Employees
         public EmployeesController(IEmployeesService service) => _service = service;
 
         [HttpGet]
-        public List<Employee> GetEmployees(GetEmployees req) => _service.GetEmployees(req);
+        public ApiResponse<List<Employee>> GetEmployees(GetEmployees req) => _service.GetEmployees(req);
 
         [HttpPost]
         public ReturnStatus SetEmployee([FromBody] SetEmployee req) => _service.SetEmployee(req);

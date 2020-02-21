@@ -28,7 +28,7 @@ namespace HotelManagementApi.Locations.Repositories
             _requestInfo = requestInfo;
         }
 
-        public List<Country> GetCountries()
+        public ApiResponse<List<Country>> GetCountries()
         {
             var result = null as List<Country>;
             using (var connection = new SqlConnection(_connectionString.Conn))
@@ -37,8 +37,8 @@ namespace HotelManagementApi.Locations.Repositories
 
                 cmd.Parameters.AddWithValue("@UserID", _requestInfo.UserId);
 
-                cmd.Parameters.Add("@lRetVal", SqlDbType.Int).Direction = ParameterDirection.Output;
-                cmd.Parameters.Add("@sRetMsg", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
+                cmd.Parameters.Add("@RetVal", SqlDbType.Int).Direction = ParameterDirection.Output;
+                cmd.Parameters.Add("@RetMsg", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
 
                 cmd.Parameters.AddWithValue("@CountryID", 0);
                 cmd.Parameters.AddWithValue("@Name", string.Empty);
@@ -68,8 +68,13 @@ namespace HotelManagementApi.Locations.Repositories
                         });
                     }
                 }
+                return new ApiResponse<List<Country>>
+                {
+                    Content = result,
+                    Status = new ReturnStatus(cmd.Parameters["@RetVal"].Value.ToSafeInt32(),
+                            cmd.Parameters["@RetMsg"].Value.ToSafeString())
+                };
             }
-            return result;
         }
         public ReturnStatus SetCountry(SetCountry req)
         {
@@ -82,8 +87,8 @@ namespace HotelManagementApi.Locations.Repositories
 
                 cmd.Parameters.AddWithValue("@UserID", _requestInfo.UserId);
 
-                cmd.Parameters.Add("@lRetVal", SqlDbType.Int).Direction = ParameterDirection.Output;
-                cmd.Parameters.Add("@sRetMsg", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
+                cmd.Parameters.Add("@RetVal", SqlDbType.Int).Direction = ParameterDirection.Output;
+                cmd.Parameters.Add("@RetMsg", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
 
                 cmd.Parameters.AddWithValue("@CountryID", req.CountryId);
                 cmd.Parameters.AddWithValue("@Name", req.Name);
@@ -94,11 +99,11 @@ namespace HotelManagementApi.Locations.Repositories
 
                 cmd.ExecuteNonQuery();
 
-                return new ReturnStatus(cmd.Parameters["@lRetVal"].Value.ToSafeInt32(), cmd.Parameters["@sRetMsg"].Value.ToSafeString());
+                return new ReturnStatus(cmd.Parameters["@RetVal"].Value.ToSafeInt32(), cmd.Parameters["@RetMsg"].Value.ToSafeString());
             }
         }
 
-        public List<State> GetStates(int countryId)
+        public ApiResponse<List<State>> GetStates(int countryId)
         {
             var result = null as List<State>;
             using (var connection = new SqlConnection(_connectionString.Conn))
@@ -107,8 +112,8 @@ namespace HotelManagementApi.Locations.Repositories
 
                 cmd.Parameters.AddWithValue("@UserID", _requestInfo.UserId);
 
-                cmd.Parameters.Add("@lRetVal", SqlDbType.Int).Direction = ParameterDirection.Output;
-                cmd.Parameters.Add("@sRetMsg", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
+                cmd.Parameters.Add("@RetVal", SqlDbType.Int).Direction = ParameterDirection.Output;
+                cmd.Parameters.Add("@RetMsg", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
 
                 cmd.Parameters.AddWithValue("@StateID", 0);
                 cmd.Parameters.AddWithValue("@CountryID", countryId);
@@ -139,8 +144,13 @@ namespace HotelManagementApi.Locations.Repositories
                         });
                     }
                 }
+                return new ApiResponse<List<State>>
+                {
+                    Content = result,
+                    Status = new ReturnStatus(cmd.Parameters["@RetVal"].Value.ToSafeInt32(),
+                            cmd.Parameters["@RetMsg"].Value.ToSafeString())
+                };
             }
-            return result;
         }
         public ReturnStatus SetState(SetState req)
         {
@@ -153,8 +163,8 @@ namespace HotelManagementApi.Locations.Repositories
 
                 cmd.Parameters.AddWithValue("@UserID", _requestInfo.UserId);
 
-                cmd.Parameters.Add("@lRetVal", SqlDbType.Int).Direction = ParameterDirection.Output;
-                cmd.Parameters.Add("@sRetMsg", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
+                cmd.Parameters.Add("@RetVal", SqlDbType.Int).Direction = ParameterDirection.Output;
+                cmd.Parameters.Add("@RetMsg", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
 
                 cmd.Parameters.AddWithValue("@StateID", req.StateId);
                 cmd.Parameters.AddWithValue("@CountryID", req.CountryId);
@@ -166,11 +176,11 @@ namespace HotelManagementApi.Locations.Repositories
 
                 cmd.ExecuteNonQuery();
 
-                return new ReturnStatus(cmd.Parameters["@lRetVal"].Value.ToSafeInt32(), cmd.Parameters["@sRetMsg"].Value.ToSafeString());
+                return new ReturnStatus(cmd.Parameters["@RetVal"].Value.ToSafeInt32(), cmd.Parameters["@RetMsg"].Value.ToSafeString());
             }
         }
 
-        public List<City> GetCities(int countryId, int stateId)
+        public ApiResponse<List<City>> GetCities(int countryId, int stateId)
         {
             var result = null as List<City>;
             using (var connection = new SqlConnection(_connectionString.Conn))
@@ -179,8 +189,8 @@ namespace HotelManagementApi.Locations.Repositories
 
                 cmd.Parameters.AddWithValue("@UserID", _requestInfo.UserId);
 
-                cmd.Parameters.Add("@lRetVal", SqlDbType.Int).Direction = ParameterDirection.Output;
-                cmd.Parameters.Add("@sRetMsg", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
+                cmd.Parameters.Add("@RetVal", SqlDbType.Int).Direction = ParameterDirection.Output;
+                cmd.Parameters.Add("@RetMsg", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
 
                 cmd.Parameters.AddWithValue("@CityID", 0);
                 cmd.Parameters.AddWithValue("@StateID", stateId);
@@ -212,8 +222,13 @@ namespace HotelManagementApi.Locations.Repositories
                         });
                     }
                 }
+                return new ApiResponse<List<City>>
+                {
+                    Content = result,
+                    Status = new ReturnStatus(cmd.Parameters["@RetVal"].Value.ToSafeInt32(),
+                            cmd.Parameters["@RetMsg"].Value.ToSafeString())
+                };
             }
-            return result;
         }
         public ReturnStatus SetCity(SetCity req)
         {
@@ -226,8 +241,8 @@ namespace HotelManagementApi.Locations.Repositories
 
                 cmd.Parameters.AddWithValue("@UserID", _requestInfo.UserId);
 
-                cmd.Parameters.Add("@lRetVal", SqlDbType.Int).Direction = ParameterDirection.Output;
-                cmd.Parameters.Add("@sRetMsg", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
+                cmd.Parameters.Add("@RetVal", SqlDbType.Int).Direction = ParameterDirection.Output;
+                cmd.Parameters.Add("@RetMsg", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
 
                 cmd.Parameters.AddWithValue("@CityID", req.CityId);
                 cmd.Parameters.AddWithValue("@StateID", req.StateId);
@@ -240,7 +255,7 @@ namespace HotelManagementApi.Locations.Repositories
 
                 cmd.ExecuteNonQuery();
 
-                return new ReturnStatus(cmd.Parameters["@lRetVal"].Value.ToSafeInt32(), cmd.Parameters["@sRetMsg"].Value.ToSafeString());
+                return new ReturnStatus(cmd.Parameters["@RetVal"].Value.ToSafeInt32(), cmd.Parameters["@RetMsg"].Value.ToSafeString());
             }
         }
     }
