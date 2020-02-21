@@ -17,6 +17,7 @@ using HotelManagementApi.Rooms.Services;
 using HotelManagementApi.Shared;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Unity;
@@ -36,40 +37,6 @@ namespace HotelManagementApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-            services.AddScoped<IRequestInfo, RequestInfo>();
-
-            using (IUnityContainer container = new UnityContainer())
-            {
-                container.RegisterType<IBookingsService, BookingsService>();
-                container.RegisterType<IBookingsRepository, BookingsRepository>();
-
-                container.RegisterType<IConstantsService, ConstantsService>();
-                container.RegisterType<IConstantsRepository, ConstantsRepository>();
-
-                container.RegisterType<IChangePasswordsService, ChangePasswordsService>();
-                container.RegisterType<IChangePasswordsRepository, ChangePasswordsRepository>();
-
-                container.RegisterType<IEmployeePermissionsService, EmployeePermissionsService>();
-                container.RegisterType<IEmployeePermissionsRepository, EmployeePermissionsRepository>();
-
-                container.RegisterType<IEmployeesService, EmployeesService>();
-                container.RegisterType<IEmployeesRepository, EmployeesRepository>();
-
-                container.RegisterType<IGuestsService, GuestsService>();
-                container.RegisterType<IGuestsRepository, GuestsRepository>();
-
-                container.RegisterType<ILocationsService, LocationsService>();
-                container.RegisterType<ILocationsRepository, LocationsRepository>();
-
-                container.RegisterType<IPaymentsService, PaymentsService>();
-                container.RegisterType<IPaymentsRepository, PaymentsRepository>();
-
-                container.RegisterType<IPermissionsService, PermissionsService>();
-                container.RegisterType<IPermissionsRepository, PermissionsRepository>();
-
-                container.RegisterType<IRoomsService, RoomsService>();
-                container.RegisterType<IRoomsRepository, RoomsRepository>();
-            }
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -81,6 +48,44 @@ namespace HotelManagementApi
             }
 
             app.UseMvc();
+        }
+
+    }
+    public static class HotelManagementDependencies
+    {
+        public static IServiceCollection RegisterHotelManagementDependencies(this IServiceCollection services)
+        {
+            services.AddTransient<IBookingsService, BookingsService>();
+            services.AddTransient<IBookingsRepository, BookingsRepository>();
+
+            services.AddTransient<IConstantsService, ConstantsService>();
+            services.AddTransient<IConstantsRepository, ConstantsRepository>();
+
+            services.AddTransient<IChangePasswordsService, ChangePasswordsService>();
+            services.AddTransient<IChangePasswordsRepository, ChangePasswordsRepository>();
+
+            services.AddTransient<IEmployeePermissionsService, EmployeePermissionsService>();
+            services.AddTransient<IEmployeePermissionsRepository, EmployeePermissionsRepository>();
+
+            services.AddTransient<IEmployeesService, EmployeesService>();
+            services.AddTransient<IEmployeesRepository, EmployeesRepository>();
+
+            services.AddTransient<IGuestsService, GuestsService>();
+            services.AddTransient<IGuestsRepository, GuestsRepository>();
+
+            services.AddTransient<ILocationsService, LocationsService>();
+            services.AddTransient<ILocationsRepository, LocationsRepository>();
+
+            services.AddTransient<IPaymentsService, PaymentsService>();
+            services.AddTransient<IPaymentsRepository, PaymentsRepository>();
+
+            services.AddTransient<IPermissionsService, PermissionsService>();
+            services.AddTransient<IPermissionsRepository, PermissionsRepository>();
+
+            services.AddTransient<IRoomsService, RoomsService>();
+            services.AddTransient<IRoomsRepository, RoomsRepository>();
+
+            return services;
         }
     }
 }
