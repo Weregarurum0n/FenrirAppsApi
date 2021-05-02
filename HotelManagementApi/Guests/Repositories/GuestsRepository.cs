@@ -25,7 +25,7 @@ namespace HotelManagementApi.Guests.Repositories
         public ApiResponse<List<Guest>> GetGuests(GetGuests req)
         {
             var result = null as List<Guest>;
-            using (var connection = new SqlConnection(_connectionString.Conn))
+            using (var connection = new SqlConnection(_connectionString.HotelManagement))
             {
                 var cmd = new SqlCommand(p_Guests_Get, connection) { CommandType = CommandType.StoredProcedure };
 
@@ -99,7 +99,7 @@ namespace HotelManagementApi.Guests.Repositories
 
         public ReturnStatus SetGuest(SetGuest req)
         {
-            using (var connection = new SqlConnection(_connectionString.Conn))
+            using (var connection = new SqlConnection(_connectionString.HotelManagement))
             {
                 var cmd = new SqlCommand(p_Guests_Set, connection)
                 {

@@ -25,7 +25,7 @@ namespace HotelManagementApi.Constants.Repositories
         public ApiResponse<List<Constant>> GetConstants(GetConstants req)
         {
             var result = null as List<Constant>;
-            using (var connection = new SqlConnection(_connectionString.Conn))
+            using (var connection = new SqlConnection(_connectionString.HotelManagement))
             {
                 var cmd = new SqlCommand(p_Constants_Get, connection) { CommandType = CommandType.StoredProcedure };
 
@@ -75,7 +75,7 @@ namespace HotelManagementApi.Constants.Repositories
 
         public ReturnStatus SetConstant(SetConstant req)
         {
-            using (var connection = new SqlConnection(_connectionString.Conn))
+            using (var connection = new SqlConnection(_connectionString.HotelManagement))
             {
                 var cmd = new SqlCommand(p_Constants_Set, connection)
                 {

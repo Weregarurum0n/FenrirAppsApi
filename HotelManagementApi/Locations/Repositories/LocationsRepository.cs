@@ -31,7 +31,7 @@ namespace HotelManagementApi.Locations.Repositories
         public ApiResponse<List<Country>> GetCountries()
         {
             var result = null as List<Country>;
-            using (var connection = new SqlConnection(_connectionString.Conn))
+            using (var connection = new SqlConnection(_connectionString.HotelManagement))
             {
                 var cmd = new SqlCommand(p_Countries_Get, connection) { CommandType = CommandType.StoredProcedure };
 
@@ -78,7 +78,7 @@ namespace HotelManagementApi.Locations.Repositories
         }
         public ReturnStatus SetCountry(SetCountry req)
         {
-            using (var connection = new SqlConnection(_connectionString.Conn))
+            using (var connection = new SqlConnection(_connectionString.HotelManagement))
             {
                 var cmd = new SqlCommand(p_Countries_Set, connection)
                 {
@@ -106,7 +106,7 @@ namespace HotelManagementApi.Locations.Repositories
         public ApiResponse<List<State>> GetStates(int countryId)
         {
             var result = null as List<State>;
-            using (var connection = new SqlConnection(_connectionString.Conn))
+            using (var connection = new SqlConnection(_connectionString.HotelManagement))
             {
                 var cmd = new SqlCommand(p_States_Get, connection) { CommandType = CommandType.StoredProcedure };
 
@@ -154,7 +154,7 @@ namespace HotelManagementApi.Locations.Repositories
         }
         public ReturnStatus SetState(SetState req)
         {
-            using (var connection = new SqlConnection(_connectionString.Conn))
+            using (var connection = new SqlConnection(_connectionString.HotelManagement))
             {
                 var cmd = new SqlCommand(p_States_Set, connection)
                 {
@@ -183,7 +183,7 @@ namespace HotelManagementApi.Locations.Repositories
         public ApiResponse<List<City>> GetCities(int countryId, int stateId)
         {
             var result = null as List<City>;
-            using (var connection = new SqlConnection(_connectionString.Conn))
+            using (var connection = new SqlConnection(_connectionString.HotelManagement))
             {
                 var cmd = new SqlCommand(p_Cities_Get, connection) { CommandType = CommandType.StoredProcedure };
 
@@ -232,7 +232,7 @@ namespace HotelManagementApi.Locations.Repositories
         }
         public ReturnStatus SetCity(SetCity req)
         {
-            using (var connection = new SqlConnection(_connectionString.Conn))
+            using (var connection = new SqlConnection(_connectionString.HotelManagement))
             {
                 var cmd = new SqlCommand(p_Cities_Set, connection)
                 {

@@ -6,7 +6,7 @@ namespace HotelManagementApi.Ping
     {
         public string GetPingStatus()
         {
-            return "Connection Successfully executed on " + DateTime.Now + " (PST).";
+            return "HOTEL MANAGEMENT:\n\nConnection Successfully executed on " + DateTime.Now + " (PST).";
         }
     }
 }

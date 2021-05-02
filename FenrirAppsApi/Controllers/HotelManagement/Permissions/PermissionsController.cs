@@ -5,7 +5,7 @@ using HotelManagementApi.Permissions.Services;
 using HotelManagementApi.Shared;
 using Microsoft.AspNetCore.Mvc;
 
-namespace FenrirAppsApi.Controllers.HotelManagement
+namespace FenrirAppsApi.Controllers.HotelManagement.Permissions
 {
     [Route("Permissions")]
     public class PermissionsController : Controller

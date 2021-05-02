@@ -1,11 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27428.2043
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31019.35
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FenrirAppsApi", "FenrirAppsApi\FenrirAppsApi.csproj", "{95F03BFA-18BA-4882-8FF5-4E9EA9DD6173}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FenrirAppsApi", "FenrirAppsApi\FenrirAppsApi.csproj", "{95F03BFA-18BA-4882-8FF5-4E9EA9DD6173}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HotelManagementApi", "HotelManagementApi\HotelManagementApi.csproj", "{4BA743E7-DDB0-4F93-84C3-D51E73294740}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HotelManagementApi", "HotelManagementApi\HotelManagementApi.csproj", "{4BA743E7-DDB0-4F93-84C3-D51E73294740}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JapaneseLearningApi", "JapaneseLearningApi\JapaneseLearningApi.csproj", "{2776E3E1-CD83-4403-AE32-72DF8FAF8D45}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnimeCharacterBirthdayApi", "AnimeCharacterBirthday\AnimeCharacterBirthdayApi.csproj", "{11C1919B-E82D-4F1D-970F-96076A17D170}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +25,14 @@ Global
 		{4BA743E7-DDB0-4F93-84C3-D51E73294740}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4BA743E7-DDB0-4F93-84C3-D51E73294740}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4BA743E7-DDB0-4F93-84C3-D51E73294740}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2776E3E1-CD83-4403-AE32-72DF8FAF8D45}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2776E3E1-CD83-4403-AE32-72DF8FAF8D45}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2776E3E1-CD83-4403-AE32-72DF8FAF8D45}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2776E3E1-CD83-4403-AE32-72DF8FAF8D45}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11C1919B-E82D-4F1D-970F-96076A17D170}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11C1919B-E82D-4F1D-970F-96076A17D170}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11C1919B-E82D-4F1D-970F-96076A17D170}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11C1919B-E82D-4F1D-970F-96076A17D170}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

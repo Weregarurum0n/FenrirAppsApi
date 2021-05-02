@@ -1,5 +1,4 @@
-﻿using HotelManagementApi;
-using HotelManagementApi.Shared;
+﻿using HotelManagementApi.Shared;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -21,22 +20,31 @@ namespace FenrirAppsApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddOptions();
-            services.AddMvc();
-            services.RegisterHotelManagementDependencies();
+
+            //services.RegisterAnimeCharacterBirthdayDependencies();
+            //services.RegisterHotelManagementDependencies();
+            //services.RegisterJapaneseLearningDependencies();
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddScoped<IRequestInfo, RequestInfo>();
 
+            services.AddMvc().AddJsonOptions(jsonOptions =>
+            {
+                jsonOptions.SerializerSettings.NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore;
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
+            //if (env.IsDevelopment())
+            //{
+            //    app.UseDeveloperExceptionPage();
+            //}
 
+            app.UseStaticFiles();
+
+            app.UseAuthentication();
             app.UseMvc();
         }
     }

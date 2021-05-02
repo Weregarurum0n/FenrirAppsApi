@@ -5,7 +5,7 @@ using HotelManagementApi.Rooms.Services;
 using HotelManagementApi.Shared;
 using Microsoft.AspNetCore.Mvc;
 
-namespace FenrirAppsApi.Controllers.HotelManagement
+namespace FenrirAppsApi.Controllers.HotelManagement.Rooms
 {
     [Route("Rooms")]
     public class RoomsController : Controller

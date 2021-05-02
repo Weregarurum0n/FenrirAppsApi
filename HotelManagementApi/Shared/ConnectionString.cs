@@ -2,11 +2,6 @@
 {
     public class ConnectionString : IConnectionString
     {
-        public string DataSource { get => "LAPTOP-K2EH8V3O"; set { } }
-        public string InitialCatalog { get => "HotelManagement"; set { } }
-        public string UserId { get => "sa"; set { } }
-        public string Password { get => "coventry"; set { } }
-
-        public string Conn { get => "Data Source=" + DataSource + ";Initial Catalog=" + InitialCatalog + ";User ID=" + UserId + ";Password=" + Password + ";"; set { } }
+        public string HotelManagement { get => "Data Source=LAPTOP-K2EH8V3O;Initial Catalog=HotelManagement;User ID=sa;Password=coventry;"; set { } }
     }
 }

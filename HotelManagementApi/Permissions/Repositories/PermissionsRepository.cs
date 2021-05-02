@@ -25,7 +25,7 @@ namespace HotelManagementApi.Permissions.Repositories
         public ApiResponse<List<Permission>> GetPermissions(GetPermissions req)
         {
             var result = null as List<Permission>;
-            using (var connection = new SqlConnection(_connectionString.Conn))
+            using (var connection = new SqlConnection(_connectionString.HotelManagement))
             {
                 var cmd = new SqlCommand(p_Permissions_Get, connection) { CommandType = CommandType.StoredProcedure };
 
@@ -77,7 +77,7 @@ namespace HotelManagementApi.Permissions.Repositories
 
         public ReturnStatus SetPermission(SetPermission req)
         {
-            using (var connection = new SqlConnection(_connectionString.Conn))
+            using (var connection = new SqlConnection(_connectionString.HotelManagement))
             {
                 var cmd = new SqlCommand(p_Permissions_Set, connection)
                 {

@@ -5,14 +5,14 @@ using HotelManagementApi.Payments.Services;
 using HotelManagementApi.Shared;
 using Microsoft.AspNetCore.Mvc;
 
-namespace FenrirAppsApi.Controllers.HotelManagement
+namespace FenrirAppsApi.Controllers.HotelManagement.Payments
 {
     [Route("Payments")]
-    public class PaymentsController : Controller
+    public class VocabController : Controller
     {
         private static IPaymentsService _service;
 
-        public PaymentsController(IPaymentsService service) => _service = service;
+        public VocabController(IPaymentsService service) => _service = service;
 
         [HttpGet]
         public ApiResponse<List<Payment>> GetPayments(GetPayments req) => _service.GetPayments(req);

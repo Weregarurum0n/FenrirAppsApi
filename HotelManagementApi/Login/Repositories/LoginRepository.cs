@@ -23,7 +23,7 @@ namespace HotelManagementApi.Login.Repositories
         public ApiResponse<UserDetail> GetUserDetails(AuthLogin req)
         {
             var result = null as UserDetail;
-            using (var connection = new SqlConnection(_connectionString.Conn))
+            using (var connection = new SqlConnection(_connectionString.HotelManagement))
             {
                 var cmd = new SqlCommand(p_Login_Auth, connection) { CommandType = CommandType.StoredProcedure };
 

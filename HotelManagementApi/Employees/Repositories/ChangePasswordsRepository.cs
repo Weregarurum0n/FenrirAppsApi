@@ -20,7 +20,7 @@ namespace HotelManagementApi.Employees.Repositories
 
         public ReturnStatus SetPassword(SetPassword req)
         {
-            using (var connection = new SqlConnection(_connectionString.Conn))
+            using (var connection = new SqlConnection(_connectionString.HotelManagement))
             {
                 var cmd = new SqlCommand(p_ChangePassword_Set, connection)
                 {

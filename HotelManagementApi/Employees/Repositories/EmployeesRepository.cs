@@ -25,7 +25,7 @@ namespace HotelManagementApi.Employees.Repositories
         public ApiResponse<List<Employee>> GetEmployees(GetEmployees req)
         {
             var result = null as List<Employee>;
-            using (var connection = new SqlConnection(_connectionString.Conn))
+            using (var connection = new SqlConnection(_connectionString.HotelManagement))
             {
                 var cmd = new SqlCommand(p_Employees_Get, connection) { CommandType = CommandType.StoredProcedure };
 
@@ -93,7 +93,7 @@ namespace HotelManagementApi.Employees.Repositories
 
         public ReturnStatus SetEmployee(SetEmployee req)
         {
-            using (var connection = new SqlConnection(_connectionString.Conn))
+            using (var connection = new SqlConnection(_connectionString.HotelManagement))
             {
                 var cmd = new SqlCommand(p_Employees_Set, connection)
                 {

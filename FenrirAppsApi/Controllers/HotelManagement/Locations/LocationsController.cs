@@ -5,14 +5,14 @@ using HotelManagementApi.Locations.Services;
 using HotelManagementApi.Shared;
 using Microsoft.AspNetCore.Mvc;
 
-namespace FenrirAppsApi.Controllers.HotelManagement
+namespace FenrirAppsApi.Controllers.HotelManagement.Locations
 {
     [Route("Locations")]
-    public class LocationsController : Controller
+    public class KatakanaController : Controller
     {
         private static ILocationsService _service;
 
-        public LocationsController(ILocationsService service) => _service = service;
+        public KatakanaController(ILocationsService service) => _service = service;
 
         [HttpGet("Countries")]
         public ApiResponse<List<Country>> GetCountries() => _service.GetCountries();

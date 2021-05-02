@@ -25,7 +25,7 @@ namespace HotelManagementApi.Payments.Repositories
         public ApiResponse<List<Payment>> GetPayments(GetPayments req)
         {
             var result = null as List<Payment>;
-            using (var connection = new SqlConnection(_connectionString.Conn))
+            using (var connection = new SqlConnection(_connectionString.HotelManagement))
             {
                 var cmd = new SqlCommand(p_Payments_Get, connection) { CommandType = CommandType.StoredProcedure };
 
@@ -77,7 +77,7 @@ namespace HotelManagementApi.Payments.Repositories
 
         public ReturnStatus SetPayment(SetPayment req)
         {
-            using (var connection = new SqlConnection(_connectionString.Conn))
+            using (var connection = new SqlConnection(_connectionString.HotelManagement))
             {
                 var cmd = new SqlCommand(p_Payments_Set, connection)
                 {

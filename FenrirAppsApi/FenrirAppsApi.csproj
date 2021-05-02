@@ -9,8 +9,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\HotelManagement\UserSettings\" />
-    <Folder Include="Controllers\HotelManagement\Themes\" />
     <Folder Include="wwwroot\" />
   </ItemGroup>
 
@@ -23,7 +21,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\AnimeCharacterBirthday\AnimeCharacterBirthdayApi.csproj" />
     <ProjectReference Include="..\HotelManagementApi\HotelManagementApi.csproj" />
+    <ProjectReference Include="..\JapaneseLearningApi\JapaneseLearningApi.csproj" />
   </ItemGroup>
 
 </Project>

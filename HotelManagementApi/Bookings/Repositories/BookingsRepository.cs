@@ -25,7 +25,7 @@ namespace HotelManagementApi.Bookings.Repositories
         public ApiResponse<List<Booking>> GetBookings(GetBookings req)
         {
             var result = null as List<Booking>;
-            using (var connection = new SqlConnection(_connectionString.Conn))
+            using (var connection = new SqlConnection(_connectionString.HotelManagement))
             {
                 var cmd = new SqlCommand(p_Bookings_Get, connection) { CommandType = CommandType.StoredProcedure };
 
@@ -85,7 +85,7 @@ namespace HotelManagementApi.Bookings.Repositories
 
         public ReturnStatus SetBooking(SetBooking req)
         {
-            using (var connection = new SqlConnection(_connectionString.Conn))
+            using (var connection = new SqlConnection(_connectionString.HotelManagement))
             {
                 var cmd = new SqlCommand(p_Bookings_Set, connection)
                 {
