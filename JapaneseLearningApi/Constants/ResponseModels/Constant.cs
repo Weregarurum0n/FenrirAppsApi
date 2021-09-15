@@ -1,13 +1,14 @@
 ﻿using System;
 
-namespace JapaneseLearningApi.AccentTheme.ResponseModels
+namespace JapaneseLearningApi.Constants.ResponseModels
 {
-    public class Theme
+    public class Constant
     {
-        public int UserId { get; set; }
-
-        public int ThemeId { get; set; }
-        public string Color { get; set; }
+        public int ConstantId { get; set; }
+        public int ParentId { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public bool Disabled { get; set; }
 
         public int CreatedId { get; set; }
         public string CreatedBy { get; set; }

@@ -1,6 +1,6 @@
-﻿namespace JapaneseLearningApi.Profile.RequestModels
+﻿namespace JapaneseLearningApi.Profile.ResponseModels
 {
-    public class SetAccentTheme
+    public class AccentTheme
     {
         public int ThemeId { get; set; }
         public int AccentId { get; set; }

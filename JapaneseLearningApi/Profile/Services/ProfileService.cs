@@ -2,7 +2,6 @@
 using JapaneseLearningApi.Profile.RequestModels;
 using JapaneseLearningApi.Profile.ResponseModels;
 using JapaneseLearningApi.Shared;
-using System.Collections.Generic;
 
 namespace JapaneseLearningApi.Profile.Services
 {
@@ -12,8 +11,10 @@ namespace JapaneseLearningApi.Profile.Services
 
         public ProfileService(IProfileRepository repository) => _repository = repository;
 
-        public ApiResponse<UserProfile> GetProfile(int id) => _repository.GetProfile(id);
-        public ApiResponse<ReturnStatus> ChangePassword(SetPassword req) => _repository.ChangePassword(req);
+        public ReturnStatus Login(GetLogin req) => _repository.Login(req);
+        public ApiResponse<UserProfile> GetProfile() => _repository.GetProfile();
+        public ReturnStatus ChangePassword(SetPassword req) => _repository.ChangePassword(req);
+        public ApiResponse<AccentTheme> GetAccentTheme() => _repository.GetAccentTheme();
         public ReturnStatus SetAccentTheme(SetAccentTheme req) => _repository.SetAccentTheme(req);
     }
 }

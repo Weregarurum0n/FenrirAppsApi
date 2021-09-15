@@ -1,6 +1,4 @@
-﻿using JapaneseLearningApi.AccentTheme.Repositories;
-using JapaneseLearningApi.AccentTheme.Services;
-using JapaneseLearningApi.Hiragana.Repositories;
+﻿using JapaneseLearningApi.Hiragana.Repositories;
 using JapaneseLearningApi.Hiragana.Services;
 using JapaneseLearningApi.Kanji.Repositories;
 using JapaneseLearningApi.Kanji.Services;
@@ -19,9 +17,6 @@ namespace JapaneseLearningApi
     {
         public static IServiceCollection RegisterHotelManagementDependencies(this IServiceCollection services)
         {
-            services.AddTransient<IAccentThemeService, AccentThemeService>();
-            services.AddTransient<IAccentThemeRepository, AccentThemeRepository>();
-
             services.AddTransient<IHiraganaService, HiraganaService>();
             services.AddTransient<IHiraganaRepository, HiraganaRepository>();
 

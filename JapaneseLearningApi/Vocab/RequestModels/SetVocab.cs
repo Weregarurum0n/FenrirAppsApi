@@ -2,8 +2,6 @@
 {
     public class SetVocab
     {
-        public int UserId { get; set; }
-
         public int VocabId { get; set; }
         public string Word { get; set; }
         public string Romaji { get; set; }

@@ -1,10 +1,7 @@
-﻿using Dapper;
-using JapaneseLearningApi.Katakana.RequestModels;
+﻿using JapaneseLearningApi.Katakana.RequestModels;
 using JapaneseLearningApi.Katakana.ResponseModels;
 using JapaneseLearningApi.Shared;
 using System.Collections.Generic;
-using System.Data;
-using System.Data.SqlClient;
 
 namespace JapaneseLearningApi.Katakana.Repositories
 {

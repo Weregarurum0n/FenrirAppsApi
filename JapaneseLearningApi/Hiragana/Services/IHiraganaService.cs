@@ -7,8 +7,8 @@ namespace JapaneseLearningApi.Hiragana.Services
 {
     public interface IHiraganaService
     {
-        ApiResponse<List<ResponseModels.HiraganaText>> GetAllHiragana(GetHiragana req);
-        ApiResponse<ResponseModels.HiraganaText> GetSpecificHiragana(int id);
+        ApiResponse<List<HiraganaText>> GetAllHiragana(GetHiragana req);
+        ApiResponse<HiraganaText> GetSpecificHiragana(int id);
         ReturnStatus SetHiragana(SetHiragana req);
     }
 }

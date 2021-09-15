@@ -12,8 +12,8 @@ namespace JapaneseLearningApi.Hiragana.Services
 
         public HiraganaService(IHiraganaRepository repository) => _repository = repository;
 
-        public ApiResponse<List<ResponseModels.HiraganaText>> GetAllHiragana(GetHiragana req) => _repository.GetAllHiragana(req);
-        public ApiResponse<ResponseModels.HiraganaText> GetSpecificHiragana(int id) => _repository.GetSpecificHiragana(id);
+        public ApiResponse<List<HiraganaText>> GetAllHiragana(GetHiragana req) => _repository.GetAllHiragana(req);
+        public ApiResponse<HiraganaText> GetSpecificHiragana(int id) => _repository.GetSpecificHiragana(id);
         public ReturnStatus SetHiragana(SetHiragana req) => _repository.SetHiragana(req);
     }
 }

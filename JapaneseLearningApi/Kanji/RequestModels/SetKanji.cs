@@ -2,8 +2,6 @@
 {
     public class SetKanji
     {
-        public int UserId { get; set; }
-
         public int KanjiId { get; set; }
         public string Character { get; set; }
         public string Romaji { get; set; }

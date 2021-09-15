@@ -8,11 +8,11 @@ using Microsoft.AspNetCore.Mvc;
 namespace FenrirAppsApi.Controllers.JapaneseLearning.Vocab
 {
     [Route("Vocab")]
-    public class VocabController : Controller
+    public class ProfileController : Controller
     {
         private static IVocabService _service;
 
-        public VocabController(IVocabService service) => _service = service;
+        public ProfileController(IVocabService service) => _service = service;
 
         [HttpGet]
         public ApiResponse<List<VocabText>> GetAllVocab(GetVocab req) => _service.GetAllVocab(req);

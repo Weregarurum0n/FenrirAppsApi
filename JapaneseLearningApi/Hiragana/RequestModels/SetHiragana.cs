@@ -2,8 +2,6 @@
 {
     public class SetHiragana
     {
-        public int UserId { get; set; }
-
         public int HiraganaId { get; set; }
         public string Character { get; set; }
         public string Romaji { get; set; }

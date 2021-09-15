@@ -2,6 +2,6 @@
 {
     public interface IConnectionString
     {
-        string HotelManagement { get; set; }
+        string JapaneseLearning { get; set; }
     }
 }

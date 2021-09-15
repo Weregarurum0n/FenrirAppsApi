@@ -87,5 +87,14 @@ namespace JapaneseLearningApi.Shared
         {
             return TimeZone.CurrentTimeZone.ToLocalTime(value);
         }
+
+        //public static SoundPlayer ToSafeSoundPlayer(this object value)
+        //{
+        //    if (value == null)
+        //        return DateTime.MinValue;
+
+        //    DateTime.TryParse(value.ToString(), out DateTime date);
+        //    return date;
+        //}
     }
 }

@@ -8,11 +8,11 @@ using Microsoft.AspNetCore.Mvc;
 namespace FenrirAppsApi.Controllers.JapaneseLearning.Hiragana
 {
     [Route("Hiragana")]
-    public class DataParseController : Controller
+    public class HiraganaController : Controller
     {
         private static IHiraganaService _service;
 
-        public DataParseController(IHiraganaService service) => _service = service;
+        public HiraganaController(IHiraganaService service) => _service = service;
 
         [HttpGet]
         public ApiResponse<List<HiraganaText>> GetAllHiragana(GetHiragana req) => _service.GetAllHiragana(req);
