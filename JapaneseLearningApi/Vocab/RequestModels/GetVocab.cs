@@ -5,6 +5,6 @@
         public string Word { get; set; }
         public string Romaji { get; set; }
         public int Level { get; set; }
-        public bool Disabled { get; set; }
+        public bool IncludeDisabled { get; set; }
     }
 }

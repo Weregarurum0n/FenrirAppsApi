@@ -12,8 +12,8 @@ namespace JapaneseLearningApi.Hiragana.Repositories
         private readonly IConnectionString _connectionString;
         private readonly IRequestInfo _requestInfo;
 
-        private static string p_Hiragana_Get = "p_Kanji_Get";
-        private static string p_Hiragana_Set = "p_Kanji_Set";
+        private static string p_Hiragana_Get = "p_Hiragana_Get";
+        private static string p_Hiragana_Set = "p_Hiragana_Set";
 
         public HiraganaRepository(IConnectionString connectionString, IRequestInfo requestInfo)
         {
@@ -36,7 +36,7 @@ namespace JapaneseLearningApi.Hiragana.Repositories
                 cmd.Parameters.AddWithValue("@Character", req.Character);
                 cmd.Parameters.AddWithValue("@Romaji", req.Romaji);
                 cmd.Parameters.AddWithValue("@Level", req.Level);
-                cmd.Parameters.AddWithValue("@Disabled", req.Disabled);
+                cmd.Parameters.AddWithValue("@IncludeDisabled", req.IncludeDisabled);
 
                 connection.Open();
 

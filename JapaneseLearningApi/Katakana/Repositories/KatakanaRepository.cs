@@ -36,7 +36,7 @@ namespace JapaneseLearningApi.Katakana.Repositories
                 cmd.Parameters.AddWithValue("@Character", req.Character);
                 cmd.Parameters.AddWithValue("@Romaji", req.Romaji);
                 cmd.Parameters.AddWithValue("@Level", req.Level);
-                cmd.Parameters.AddWithValue("@Disabled", req.Disabled);
+                cmd.Parameters.AddWithValue("@IncludeDisabled", req.IncludeDisabled);
 
                 connection.Open();
 

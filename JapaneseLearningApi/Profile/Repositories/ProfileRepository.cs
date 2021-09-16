@@ -11,6 +11,7 @@ namespace JapaneseLearningApi.Profile.Repositories
         private readonly IConnectionString _connectionString;
         private readonly IRequestInfo _requestInfo;
 
+        private static string p_Login_Auth = "p_Login_Auth";
         private static string p_Profile_Get = "p_Profile_Get";
         private static string p_Password_Set = "p_Password_Set";
         private static string p_AccentTheme_Get = "p_AccentTheme_Get";
@@ -27,7 +28,7 @@ namespace JapaneseLearningApi.Profile.Repositories
             var result = null as UserProfile;
             using (var connection = new SqlConnection(_connectionString.JapaneseLearning))
             {
-                var cmd = new SqlCommand(p_Profile_Get, connection) { CommandType = CommandType.StoredProcedure };
+                var cmd = new SqlCommand(p_Login_Auth, connection) { CommandType = CommandType.StoredProcedure };
 
                 cmd.Parameters.Add("@RetVal", SqlDbType.Int).Direction = ParameterDirection.Output;
                 cmd.Parameters.Add("@RetMsg", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;

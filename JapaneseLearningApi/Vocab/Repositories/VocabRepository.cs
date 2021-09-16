@@ -36,7 +36,7 @@ namespace JapaneseLearningApi.Vocab.Repositories
                 cmd.Parameters.AddWithValue("@Word", req.Word);
                 cmd.Parameters.AddWithValue("@Romaji", req.Romaji);
                 cmd.Parameters.AddWithValue("@Level", req.Level);
-                cmd.Parameters.AddWithValue("@Disabled", req.Disabled);
+                cmd.Parameters.AddWithValue("@IncludeDisabled", req.IncludeDisabled);
 
                 connection.Open();
 
@@ -129,7 +129,7 @@ namespace JapaneseLearningApi.Vocab.Repositories
         {
             using (var connection = new SqlConnection(_connectionString.JapaneseLearning))
             {
-                var cmd = new SqlCommand(p_Vocab_Get, connection)
+                var cmd = new SqlCommand(p_Vocab_Set, connection)
                 {
                     CommandType = CommandType.StoredProcedure
                 };

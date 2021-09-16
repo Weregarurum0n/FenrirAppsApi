@@ -37,7 +37,7 @@ namespace JapaneseLearningApi.Kanji.Repositories
                 cmd.Parameters.AddWithValue("@Character", req.Character);
                 cmd.Parameters.AddWithValue("@Romaji", req.Romaji);
                 cmd.Parameters.AddWithValue("@Level", req.Level);
-                cmd.Parameters.AddWithValue("@Disabled", req.Disabled);
+                cmd.Parameters.AddWithValue("@IncludeDisabled", req.IncludeDisabled);
 
                 connection.Open();
 
@@ -130,7 +130,7 @@ namespace JapaneseLearningApi.Kanji.Repositories
         {
             using (var connection = new SqlConnection(_connectionString.JapaneseLearning))
             {
-                var cmd = new SqlCommand(p_Kanji_Get, connection)
+                var cmd = new SqlCommand(p_Kanji_Set, connection)
                 {
                     CommandType = CommandType.StoredProcedure
                 };
